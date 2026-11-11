@@ -602,7 +602,7 @@
             <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
                 <li class="flex items-start gap-2.5">
                     <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
-                    <span><strong>Sin cobros:</strong> La plataforma es 100% gratuita. Queda estrictamente prohibida la comercialización.</span>
+                    <span><strong>Sin cobros:</strong> La plataforma es 100% gratuita. Queda strictly prohibida la comercialización.</span>
                 </li>
                 <li class="flex items-start gap-2.5">
                     <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
@@ -649,7 +649,7 @@
             <div class="flex gap-4">
                 <a href="#" onclick="toggleModal('modalRules'); return false;" class="hover:underline">Reglas de Seguridad</a>
                 <span>•</span>
-                <span class="text-slate-400">Plataforma Comunitario</span>
+                <span class="text-slate-400">Plataforma Comunitaria</span>
             </div>
         </div>
     </footer>
@@ -657,21 +657,21 @@
     <!-- Firebase SDK Modular -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Configuración Global Firebase
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'farmaayuda-slrc';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' 
-            ? JSON.parse(__firebase_config) 
-            : {
-                apiKey: "demo-api-key",
-                authDomain: "demo-app.firebaseapp.com",
-                projectId: "demo-app",
-                storageBucket: "demo-app.appspot.com",
-                messagingSenderId: "123456789",
-                appId: "1:123456789:web:demo"
-              };
+        // =========================================================================
+        // REEMPLAZA ESTE BLOQUE CON LAS CREDENCIALES DE TU PROYECTO FIREBASE
+        // (Consola Firebase > Configuración del Proyecto > Tu aplicación Web)
+        // =========================================================================
+        const firebaseConfig = {
+          apiKey: "REEMPLAZAR_POR_TU_API_KEY",
+          authDomain: "farmaayudaslrc.firebaseapp.com",
+          projectId: "farmaayudaslrc",
+          storageBucket: "farmaayudaslrc.appspot.com",
+          messagingSenderId: "1234567890",
+          appId: "1:1234567890:web:abcdef123456"
+        };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -695,30 +695,24 @@
             return `${prefix}-${code}`;
         }
 
-        // Autenticación Automática
+        // Autenticación Anónima Automática para Permisos
         window.addEventListener('DOMContentLoaded', async () => {
             try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
+                await signInAnonymously(auth);
             } catch (err) {
-                console.warn("Auth Firebase fallback:", err);
+                console.warn("Autenticación inicial de Firebase:", err);
             }
         });
 
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
-            if (user) {
-                listenToPosts();
-                listenToAdminMessages();
-            }
+            listenToPosts();
+            listenToAdminMessages();
         });
 
-        // Escuchar Publicaciones (Firestore)
+        // Escuchar Publicaciones (Colección Firestore 'medications')
         function listenToPosts() {
-            const postsColl = collection(db, 'artifacts', appId, 'public', 'data', 'medications');
+            const postsColl = collection(db, 'medications');
 
             onSnapshot(postsColl, (snapshot) => {
                 const posts = [];
@@ -726,24 +720,19 @@
                     posts.push({ id: doc.id, ...doc.data() });
                 });
 
-                if (posts.length === 0) {
-                    seedInitialData();
-                    return;
-                }
-
                 allPosts = posts;
                 updateCounts();
                 renderPosts();
                 if (isAdminLoggedIn) renderAdminTable();
             }, (error) => {
-                console.error("Error al escuchar posts:", error);
+                console.error("Error al escuchar publicaciones:", error);
                 renderPosts();
             });
         }
 
-        // Escuchar Mensajes enviadas al Admin
+        // Escuchar Mensajes enviados al Admin (Colección Firestore 'admin_messages')
         function listenToAdminMessages() {
-            const msgsColl = collection(db, 'artifacts', appId, 'public', 'data', 'admin_messages');
+            const msgsColl = collection(db, 'admin_messages');
 
             onSnapshot(msgsColl, (snapshot) => {
                 const msgs = [];
@@ -755,58 +744,8 @@
                 updateCounts();
                 if (isAdminLoggedIn) renderAdminMessages();
             }, (err) => {
-                console.error("Error mensajes admin:", err);
+                console.error("Error al escuchar mensajes admin:", err);
             });
-        }
-
-        // Sembrado de Datos Demo Iniciales
-        async function seedInitialData() {
-            const initialMock = [
-                {
-                    publicId: 'FA-9K82L',
-                    type: 'donation',
-                    name: 'Losartán',
-                    dosage: '50mg - 20 tabletas',
-                    expiry: '2027-04',
-                    zone: 'Centro',
-                    phone: '6531112233',
-                    email: 'juan.perez@sanluis.org',
-                    notes: 'Caja intacta y sellada. Entrega cerca del Parque Yocupicio.',
-                    status: 'approved',
-                    createdAt: Date.now()
-                },
-                {
-                    publicId: 'FA-3M41P',
-                    type: 'request',
-                    name: 'Metformina',
-                    dosage: '850mg',
-                    expiry: '',
-                    zone: 'Jalisco',
-                    phone: '6539998877',
-                    email: 'maria.solis@gmail.com',
-                    notes: 'Se requiere para adulto mayor con receta médica. Muchas gracias.',
-                    status: 'approved',
-                    createdAt: Date.now() - 10000
-                },
-                {
-                    publicId: 'FA-7R55W',
-                    type: 'donation',
-                    name: 'Amoxicilina Jarabe',
-                    dosage: '250mg / 5ml (Frasco sellado)',
-                    expiry: '2026-11',
-                    zone: 'Comercial',
-                    phone: '6535554411',
-                    email: 'donante.med@gmail.com',
-                    notes: 'Nos sobró un frasco sellado de pediatría.',
-                    status: 'approved',
-                    createdAt: Date.now() - 20000
-                }
-            ];
-
-            const postsColl = collection(db, 'artifacts', appId, 'public', 'data', 'medications');
-            for (const item of initialMock) {
-                await addDoc(postsColl, item);
-            }
         }
 
         // Render Tarjetas Públicas
@@ -827,7 +766,7 @@
                 if (filterZone !== 'all' && post.zone !== filterZone) return false;
 
                 if (searchVal) {
-                    const matchName = post.name.toLowerCase().includes(searchVal);
+                    const matchName = (post.name || '').toLowerCase().includes(searchVal);
                     const matchNotes = (post.notes || '').toLowerCase().includes(searchVal);
                     const matchCode = (post.publicId || '').toLowerCase().includes(searchVal);
                     if (!matchName && !matchNotes && !matchCode) return false;
@@ -898,10 +837,9 @@
             });
         };
 
-        // Enviar Publicación
+        // Enviar Publicación a Firestore
         window.handleFormSubmit = async function(e) {
             e.preventDefault();
-            if (!currentUser) return;
 
             const btn = document.getElementById('btnSubmitPost');
             btn.disabled = true;
@@ -934,7 +872,7 @@
             };
 
             try {
-                const postsColl = collection(db, 'artifacts', appId, 'public', 'data', 'medications');
+                const postsColl = collection(db, 'medications');
                 await addDoc(postsColl, newPost);
                 
                 document.getElementById('formPublish').reset();
@@ -944,7 +882,7 @@
                 toggleModal('modalSuccessCode');
             } catch (error) {
                 console.error("Error al guardar publicación:", error);
-                alert("Ocurrió un detalle al guardar. Inténtalo de nuevo.");
+                alert("Ocurrió un error al intentar guardar en Firebase. Revisa tus credenciales y reglas de seguridad.");
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `Enviar a Revisión`;
@@ -971,7 +909,7 @@
             };
 
             try {
-                const msgsColl = collection(db, 'artifacts', appId, 'public', 'data', 'admin_messages');
+                const msgsColl = collection(db, 'admin_messages');
                 await addDoc(msgsColl, newMsg);
 
                 alert(`¡Mensaje enviado al administrador con éxito!\nTu Folio de Atención es: ${msgFolio}`);
@@ -979,7 +917,7 @@
                 document.getElementById('adminMsgText').value = '';
             } catch (err) {
                 console.error("Error al enviar mensaje a admin:", err);
-                alert("Ocurrió un detalle al enviar el mensaje.");
+                alert("Ocurrió un error al enviar el mensaje.");
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `Enviar Mensaje`;
@@ -1011,7 +949,7 @@
             btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Desactivando...`;
 
             try {
-                const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'medications', post.id);
+                const postRef = doc(db, 'medications', post.id);
                 await updateDoc(postRef, { status: 'inactive' });
                 
                 msg.className = "text-xs p-2.5 rounded-lg bg-emerald-100 text-emerald-800 block font-medium";
@@ -1217,7 +1155,7 @@
 
         window.toggleMsgRead = async function(id, status) {
             try {
-                const msgRef = doc(db, 'artifacts', appId, 'public', 'data', 'admin_messages', id);
+                const msgRef = doc(db, 'admin_messages', id);
                 await updateDoc(msgRef, { read: status });
             } catch (err) {
                 console.error("Error al actualizar lectura mensaje:", err);
@@ -1226,7 +1164,7 @@
 
         window.changeStatus = async function(id, newStatus) {
             try {
-                const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'medications', id);
+                const postRef = doc(db, 'medications', id);
                 await updateDoc(postRef, { status: newStatus });
             } catch (err) {
                 console.error("Error al actualizar estado admin:", err);
@@ -1236,14 +1174,14 @@
         window.deletePostAdmin = async function(id) {
             if (!confirm("¿Eliminar definitivamente esta publicación?")) return;
             try {
-                const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'medications', id);
+                const postRef = doc(db, 'medications', id);
                 await deleteDoc(postRef);
             } catch (err) {
                 console.error("Error al eliminar admin:", err);
             }
         };
 
-        // Open Modal Contact
+        // Modal Contacto Público
         window.openContactModal = function(id) {
             const post = allPosts.find(p => p.id === id);
             if (!post) return;
@@ -1271,7 +1209,7 @@
 
             document.getElementById('contactModalNotes').innerText = post.notes || 'Sin observaciones especificadas.';
 
-            const cleanPhone = post.phone.replace(/\D/g, '');
+            const cleanPhone = (post.phone || '').replace(/\D/g, '');
             const whatsappMsg = encodeURIComponent(`Hola, me pongo en contacto desde FarmaAyuda San Luis sobre el medicamento: ${post.name} (Folio: ${post.publicId || ''})`);
             
             document.getElementById('btnWhatsapp').href = `https://wa.me/52${cleanPhone}?text=${whatsappMsg}`;

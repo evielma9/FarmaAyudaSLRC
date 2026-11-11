@@ -38,16 +38,9 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
@@ -56,7 +49,6 @@
     <header class="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 shadow-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logotipo e Identidad -->
                 <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                     <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-600 via-brand-500 to-hope-500 flex items-center justify-center text-white shadow-md shadow-brand-500/25">
                         <i class="fa-solid fa-heart-pulse text-2xl"></i>
@@ -72,7 +64,6 @@
                     </div>
                 </div>
 
-                <!-- Acciones Principales Header -->
                 <div class="flex items-center gap-2 sm:gap-3">
                     <button onclick="toggleModal('modalUserDeactivate')" class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-2 rounded-xl text-xs transition border border-slate-200/60">
                         <i class="fa-solid fa-key text-slate-500"></i>
@@ -124,13 +115,11 @@
 
             <!-- Barra de Búsqueda y Filtros -->
             <div class="mt-8 bg-white p-3 sm:p-4 rounded-2xl shadow-xl shadow-slate-200/70 border border-slate-200/80 grid grid-cols-1 md:grid-cols-12 gap-3 text-left">
-                <!-- Input Búsqueda -->
                 <div class="relative md:col-span-5">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
                     <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Ej. Paracetamol, Losartán, Insulina..." class="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition font-medium">
                 </div>
 
-                <!-- Select Tipo -->
                 <div class="md:col-span-3">
                     <select id="filterType" onchange="applyFilters()" class="w-full py-2.5 px-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-slate-700 font-medium transition">
                         <option value="all">Todas las publicaciones</option>
@@ -139,7 +128,6 @@
                     </select>
                 </div>
 
-                <!-- Select Zona SLRC -->
                 <div class="md:col-span-4">
                     <select id="filterZone" onchange="applyFilters()" class="w-full py-2.5 px-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-slate-700 font-medium transition">
                         <option value="all">Todas las zonas (San Luis R.C.)</option>
@@ -159,8 +147,6 @@
 
     <!-- Contenido Principal -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
-        
-        <!-- Pestañas de Filtrado Rápido -->
         <div class="flex items-center justify-between border-b border-slate-200 mb-6 pb-2">
             <div class="flex gap-2 sm:gap-3 overflow-x-auto pb-1">
                 <button id="tabAll" onclick="setTab('all')" class="tab-btn font-bold text-xs sm:text-sm px-4 py-2 rounded-xl bg-slate-900 text-white shadow-sm transition">
@@ -180,7 +166,6 @@
             </div>
         </div>
 
-        <!-- Grid de Tarjetas -->
         <div id="postsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="col-span-full py-16 text-center text-slate-400">
                 <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-brand-500"></i>
@@ -188,7 +173,6 @@
             </div>
         </div>
 
-        <!-- Estado Vacío -->
         <div id="emptyState" class="hidden col-span-full py-16 text-center bg-white rounded-2xl border border-dashed border-slate-300 p-8 shadow-2xs">
             <div class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto text-slate-400 mb-4 text-2xl">
                 <i class="fa-solid fa-prescription-bottle-medical"></i>
@@ -345,10 +329,9 @@
         </div>
     </div>
 
-    <!-- MODAL: Panel Completo de Administración (Dos Pestañas: Publicaciones y Mensajes) -->
+    <!-- MODAL: Panel Completo de Administración -->
     <div id="modalAdminDashboard" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden">
-            <!-- Header Admin -->
             <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900 text-white">
                 <div class="flex items-center gap-3">
                     <i class="fa-solid fa-sliders text-amber-400 text-lg"></i>
@@ -367,7 +350,6 @@
                 </div>
             </div>
 
-            <!-- Tabs Internos Panel Admin -->
             <div class="bg-slate-100 px-6 pt-3 border-b border-slate-200 flex gap-4 text-xs font-bold">
                 <button id="tabAdminPubs" onclick="switchAdminTab('pubs')" class="pb-3 border-b-2 border-brand-600 text-brand-600 flex items-center gap-2">
                     <i class="fa-solid fa-list-check"></i>
@@ -381,9 +363,7 @@
                 </button>
             </div>
 
-            <!-- SECCIÓN 1: Gestión de Publicaciones -->
             <div id="sectionAdminPubs" class="flex-1 flex flex-col overflow-hidden">
-                <!-- Filtros Publicaciones -->
                 <div class="p-4 bg-slate-50 border-b border-slate-200 grid grid-cols-1 sm:grid-cols-12 gap-3 text-xs">
                     <div class="sm:col-span-4">
                         <label class="block font-bold text-slate-700 mb-1">Filtrar por Correo</label>
@@ -404,7 +384,6 @@
                     </div>
                 </div>
 
-                <!-- Tabla Admin -->
                 <div class="p-4 overflow-y-auto custom-scrollbar flex-1">
                     <table class="w-full text-left text-xs border-collapse">
                         <thead>
@@ -417,18 +396,13 @@
                                 <th class="p-2.5 text-right">Acciones Directas</th>
                             </tr>
                         </thead>
-                        <tbody id="adminTableBody" class="divide-y divide-slate-100">
-                            <!-- Filas de datos -->
-                        </tbody>
+                        <tbody id="adminTableBody" class="divide-y divide-slate-100"></tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- SECCIÓN 2: Mensajes Recibidos de Usuarios -->
             <div id="sectionAdminMsgs" class="flex-1 overflow-y-auto p-4 custom-scrollbar hidden space-y-3">
-                <div id="adminMsgsContainer" class="space-y-3 text-xs">
-                    <!-- Mensajes dinámicos -->
-                </div>
+                <div id="adminMsgsContainer" class="space-y-3 text-xs"></div>
             </div>
         </div>
     </div>
@@ -436,7 +410,6 @@
     <!-- MODAL: Crear Publicación -->
     <div id="modalPublish" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden">
-            <!-- Header Modal -->
             <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                 <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center font-bold">
@@ -449,9 +422,7 @@
                 </button>
             </div>
 
-            <!-- Form -->
             <form id="formPublish" onsubmit="handleFormSubmit(event)" class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-sm">
-                
                 <div class="p-3.5 bg-blue-50 rounded-xl border border-blue-100 text-blue-900 flex items-start gap-3">
                     <i class="fa-solid fa-shield-halved text-blue-600 text-base mt-0.5"></i>
                     <p class="text-xs leading-relaxed">
@@ -459,7 +430,6 @@
                     </p>
                 </div>
 
-                <!-- Tipo -->
                 <div>
                     <label class="block font-bold text-slate-700 mb-1.5">¿Qué deseas realizar? <span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-2 gap-3">
@@ -476,13 +446,11 @@
                     </div>
                 </div>
 
-                <!-- Medicamento -->
                 <div>
                     <label for="medName" class="block font-bold text-slate-700 mb-1">Nombre del Medicamento <span class="text-red-500">*</span></label>
                     <input type="text" id="medName" required placeholder="Ej. Paracetamol, Amoxicilina, Salbutamol" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
                 </div>
 
-                <!-- Dosis & Caducidad -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label for="medDosage" class="block font-bold text-slate-700 mb-1">Dosis / Presentación <span class="text-red-500">*</span></label>
@@ -494,7 +462,6 @@
                     </div>
                 </div>
 
-                <!-- Zona / Colonia SLRC -->
                 <div>
                     <label for="medZone" class="block font-bold text-slate-700 mb-1">Colonia / Zona de San Luis R.C. <span class="text-red-500">*</span></label>
                     <select id="medZone" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition font-medium">
@@ -510,7 +477,6 @@
                     </select>
                 </div>
 
-                <!-- Contacto -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label for="contactPhone" class="block font-bold text-slate-700 mb-1">Teléfono / WhatsApp <span class="text-red-500">*</span></label>
@@ -522,13 +488,11 @@
                     </div>
                 </div>
 
-                <!-- Notas -->
                 <div>
                     <label for="medNotes" class="block font-bold text-slate-700 mb-1">Observaciones</label>
                     <textarea id="medNotes" rows="2" placeholder="Empaque en buen estado, punto preferido de entrega..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition"></textarea>
                 </div>
 
-                <!-- Actions -->
                 <div class="pt-3 border-t border-slate-100 flex justify-end gap-3">
                     <button type="button" onclick="toggleModal('modalPublish')" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 transition">
                         Cancelar
@@ -549,9 +513,7 @@
             </button>
             
             <div class="text-center mb-5">
-                <div id="contactModalBadge" class="inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2">
-                    DONACIÓN
-                </div>
+                <div id="contactModalBadge" class="inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2">DONACIÓN</div>
                 <h3 id="contactModalMedName" class="text-xl font-extrabold text-slate-900">Paracetamol 500mg</h3>
                 <p id="contactModalZone" class="text-xs text-slate-500 font-medium mt-0.5">Ubicación: Colonia Centro</p>
             </div>
@@ -571,7 +533,6 @@
                 </div>
             </div>
 
-            <!-- Acciones Directas -->
             <div class="space-y-2.5">
                 <a id="btnWhatsapp" href="#" target="_blank" class="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-sm transition text-sm">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
@@ -602,7 +563,7 @@
             <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
                 <li class="flex items-start gap-2.5">
                     <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
-                    <span><strong>Sin cobros:</strong> La plataforma es 100% gratuita. Queda strictly prohibida la comercialización.</span>
+                    <span><strong>Sin cobros:</strong> La plataforma es 100% gratuita. Queda estrictamente prohibida la comercialización.</span>
                 </li>
                 <li class="flex items-start gap-2.5">
                     <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
@@ -660,24 +621,24 @@
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // =========================================================================
-        // REEMPLAZA ESTE BLOQUE CON LAS CREDENCIALES DE TU PROYECTO FIREBASE
-        // (Consola Firebase > Configuración del Proyecto > Tu aplicación Web)
-        // =========================================================================
+        // ==========================================
+        // CONFIGURACIÓN DE FIREBASE (Tus datos reales)[cite: 4]
+        // ==========================================
         const firebaseConfig = {
-          apiKey: "REEMPLAZAR_POR_TU_API_KEY",
-          authDomain: "farmaayudaslrc.firebaseapp.com",
-          projectId: "farmaayudaslrc",
-          storageBucket: "farmaayudaslrc.appspot.com",
-          messagingSenderId: "1234567890",
-          appId: "1:1234567890:web:abcdef123456"
+            apiKey: "AIzaSyBYTJqmJzVxgRyV_BYiZNjMEtfjeOAFUFQ",
+            authDomain: "farmaayudaslrc.firebaseapp.com",
+            databaseURL: "https://farmaayudaslrc-default-rtdb.firebaseio.com",
+            projectId: "farmaayudaslrc",
+            storageBucket: "farmaayudaslrc.appspot.com",
+            messagingSenderId: "682153934912",
+            appId: "1:682153934912:web:061a642ddd3eb7ebf61fa5",
+            measurementId: "G-8DM3VCF0EW"
         };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Variables Globales
         let currentUser = null;
         let allPosts = [];
         let allMessages = [];
@@ -685,7 +646,6 @@
         let isAdminLoggedIn = false;
         let lastCreatedCode = '';
 
-        // Generadores de Códigos Folio
         function generateCode(prefix) {
             const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
             let code = '';
@@ -695,29 +655,33 @@
             return `${prefix}-${code}`;
         }
 
-        // Autenticación Anónima Automática para Permisos
         window.addEventListener('DOMContentLoaded', async () => {
             try {
-                await signInAnonymously(auth);
+                if (!auth.currentUser) {
+                    await signInAnonymously(auth);
+                }
             } catch (err) {
-                console.warn("Autenticación inicial de Firebase:", err);
+                console.warn("Auth Firebase error:", err);
             }
         });
 
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
-            listenToPosts();
-            listenToAdminMessages();
+            if (user) {
+                listenToPosts();
+                listenToAdminMessages();
+            } else {
+                signInAnonymously(auth).catch(e => console.error("Error re-autenticando:", e));
+            }
         });
 
-        // Escuchar Publicaciones (Colección Firestore 'medications')
         function listenToPosts() {
             const postsColl = collection(db, 'medications');
 
             onSnapshot(postsColl, (snapshot) => {
                 const posts = [];
-                snapshot.forEach((doc) => {
-                    posts.push({ id: doc.id, ...doc.data() });
+                snapshot.forEach((docSnap) => {
+                    posts.push({ id: docSnap.id, ...docSnap.data() });
                 });
 
                 allPosts = posts;
@@ -725,30 +689,27 @@
                 renderPosts();
                 if (isAdminLoggedIn) renderAdminTable();
             }, (error) => {
-                console.error("Error al escuchar publicaciones:", error);
-                renderPosts();
+                console.error("Error al escuchar posts:", error);
             });
         }
 
-        // Escuchar Mensajes enviados al Admin (Colección Firestore 'admin_messages')
         function listenToAdminMessages() {
             const msgsColl = collection(db, 'admin_messages');
 
             onSnapshot(msgsColl, (snapshot) => {
                 const msgs = [];
-                snapshot.forEach((doc) => {
-                    msgs.push({ id: doc.id, ...doc.data() });
+                snapshot.forEach((docSnap) => {
+                    msgs.push({ id: docSnap.id, ...docSnap.data() });
                 });
 
                 allMessages = msgs;
                 updateCounts();
                 if (isAdminLoggedIn) renderAdminMessages();
             }, (err) => {
-                console.error("Error al escuchar mensajes admin:", err);
+                console.error("Error mensajes admin:", err);
             });
         }
 
-        // Render Tarjetas Públicas
         window.renderPosts = function() {
             const grid = document.getElementById('postsGrid');
             const emptyState = document.getElementById('emptyState');
@@ -766,7 +727,7 @@
                 if (filterZone !== 'all' && post.zone !== filterZone) return false;
 
                 if (searchVal) {
-                    const matchName = (post.name || '').toLowerCase().includes(searchVal);
+                    const matchName = post.name.toLowerCase().includes(searchVal);
                     const matchNotes = (post.notes || '').toLowerCase().includes(searchVal);
                     const matchCode = (post.publicId || '').toLowerCase().includes(searchVal);
                     if (!matchName && !matchNotes && !matchCode) return false;
@@ -837,78 +798,91 @@
             });
         };
 
-        // Enviar Publicación a Firestore
         window.handleFormSubmit = async function(e) {
             e.preventDefault();
-
+            
             const btn = document.getElementById('btnSubmitPost');
             btn.disabled = true;
             btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Guardando...`;
 
-            const type = document.querySelector('input[name="postType"]:checked').value;
-            const name = document.getElementById('medName').value.trim();
-            const dosage = document.getElementById('medDosage').value.trim();
-            const expiry = document.getElementById('medExpiry').value;
-            const zone = document.getElementById('medZone').value;
-            const phone = document.getElementById('contactPhone').value.trim();
-            const email = document.getElementById('contactEmail').value.trim();
-            const notes = document.getElementById('medNotes').value.trim();
-
-            const publicId = generateCode('FA');
-            lastCreatedCode = publicId;
-
-            const newPost = {
-                publicId,
-                type,
-                name,
-                dosage,
-                expiry: type === 'donation' ? expiry : '',
-                zone,
-                phone,
-                email,
-                notes,
-                status: 'pending',
-                createdAt: Date.now()
-            };
-
             try {
+                if (!auth.currentUser) {
+                    await signInAnonymously(auth);
+                }
+
+                const type = document.querySelector('input[name="postType"]:checked').value;
+                const name = document.getElementById('medName').value.trim();
+                const dosage = document.getElementById('medDosage').value.trim();
+                const expiry = document.getElementById('medExpiry').value;
+                const zone = document.getElementById('medZone').value;
+                const phone = document.getElementById('contactPhone').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                const notes = document.getElementById('medNotes').value.trim();
+
+                const publicId = generateCode('FA');
+                lastCreatedCode = publicId;
+
+                const newPost = {
+                    publicId,
+                    type,
+                    name,
+                    dosage,
+                    expiry: type === 'donation' ? expiry : '',
+                    zone,
+                    phone,
+                    email,
+                    notes,
+                    status: 'pending',
+                    createdAt: Date.now()
+                };
+
                 const postsColl = collection(db, 'medications');
-                await addDoc(postsColl, newPost);
+                
+                const timeoutPromise = new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('Tiempo de espera agotado. Revisa tu conexión a internet o reglas de Firestore.')), 8000)
+                );
+
+                await Promise.race([
+                    addDoc(postsColl, newPost),
+                    timeoutPromise
+                ]);
                 
                 document.getElementById('formPublish').reset();
                 toggleModal('modalPublish');
                 
                 document.getElementById('createdCodeDisplay').innerText = publicId;
                 toggleModal('modalSuccessCode');
+
             } catch (error) {
                 console.error("Error al guardar publicación:", error);
-                alert("Ocurrió un error al intentar guardar en Firebase. Revisa tus credenciales y reglas de seguridad.");
+                alert("Hubo un error al guardar la publicación: " + (error.message || "Verifica tu conexión o permisos."));
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `Enviar a Revisión`;
             }
         };
 
-        // Enviar Mensaje al Administrador
         window.handleSendAdminMsg = async function(e) {
             e.preventDefault();
             const btn = document.getElementById('btnAdminMsgSubmit');
             btn.disabled = true;
             btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Enviando...`;
 
-            const msgFolio = generateCode('MSG');
-            const newMsg = {
-                publicId: msgFolio,
-                name: document.getElementById('adminMsgName').value.trim(),
-                email: document.getElementById('adminMsgEmail').value.trim(),
-                phone: document.getElementById('adminMsgPhone').value.trim(),
-                subject: document.getElementById('adminMsgSubject').value,
-                text: document.getElementById('adminMsgText').value.trim(),
-                read: false,
-                createdAt: Date.now()
-            };
-
             try {
+                if (!auth.currentUser) await signInAnonymously(auth);
+
+                const msgFolio = generateCode('MSG');
+                const newMsg = {
+                    publicId: msgFolio,
+                    name: document.getElementById('adminMsgName').value.trim(),
+                    email: document.getElementById('adminMsgEmail').value.trim(),
+                    phone: document.getElementById('adminMsgPhone').value.trim(),
+                    subject: document.getElementById('adminMsgSubject').value,
+                    text: document.getElementById('adminMsgText').value.trim(),
+                    read: false,
+                    createdAt: Date.now()
+                };
+
                 const msgsColl = collection(db, 'admin_messages');
                 await addDoc(msgsColl, newMsg);
 
@@ -917,14 +891,13 @@
                 document.getElementById('adminMsgText').value = '';
             } catch (err) {
                 console.error("Error al enviar mensaje a admin:", err);
-                alert("Ocurrió un error al enviar el mensaje.");
+                alert("Ocurrió un detalle al enviar el mensaje.");
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `Enviar Mensaje`;
             }
         };
 
-        // Desactivación por Código Único
         window.handleUserDeactivate = async function(e) {
             e.preventDefault();
             const codeInput = document.getElementById('inputDeactivateCode').value.trim().toUpperCase();
@@ -969,7 +942,6 @@
             }
         };
 
-        // Login Admin
         window.handleAdminLogin = function(e) {
             e.preventDefault();
             const u = document.getElementById('adminUser').value.trim();
@@ -1020,7 +992,6 @@
             }
         }
 
-        // Admin Tabs (Publicaciones / Mensajes)
         window.switchAdminTab = function(tab) {
             const secPubs = document.getElementById('sectionAdminPubs');
             const secMsgs = document.getElementById('sectionAdminMsgs');
@@ -1041,7 +1012,6 @@
             }
         };
 
-        // Render Tabla Publicaciones Admin
         window.renderAdminTable = function() {
             const tbody = document.getElementById('adminTableBody');
             if (!tbody) return;
@@ -1098,7 +1068,6 @@
             });
         };
 
-        // Render Mensajes Recibidos Admin
         window.renderAdminMessages = function() {
             const container = document.getElementById('adminMsgsContainer');
             if (!container) return;
@@ -1112,7 +1081,6 @@
             allMessages.forEach(msg => {
                 const card = document.createElement('div');
                 card.className = `p-4 rounded-xl border ${msg.read ? 'bg-slate-50 border-slate-200' : 'bg-amber-50/60 border-amber-200'} space-y-2`;
-
                 const cleanPhone = (msg.phone || '').replace(/\D/g, '');
                 
                 card.innerHTML = `
@@ -1181,7 +1149,6 @@
             }
         };
 
-        // Modal Contacto Público
         window.openContactModal = function(id) {
             const post = allPosts.find(p => p.id === id);
             if (!post) return;
@@ -1209,7 +1176,7 @@
 
             document.getElementById('contactModalNotes').innerText = post.notes || 'Sin observaciones especificadas.';
 
-            const cleanPhone = (post.phone || '').replace(/\D/g, '');
+            const cleanPhone = post.phone.replace(/\D/g, '');
             const whatsappMsg = encodeURIComponent(`Hola, me pongo en contacto desde FarmaAyuda San Luis sobre el medicamento: ${post.name} (Folio: ${post.publicId || ''})`);
             
             document.getElementById('btnWhatsapp').href = `https://wa.me/52${cleanPhone}?text=${whatsappMsg}`;
@@ -1252,27 +1219,16 @@
 
         window.setTab = function(tab) {
             currentTab = tab;
-            
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.className = "tab-btn text-slate-600 hover:text-slate-900 font-semibold text-xs sm:text-sm px-4 py-2 rounded-xl transition hover:bg-slate-100";
             });
-
             const activeBtn = tab === 'all' ? 'tabAll' : (tab === 'donation' ? 'tabDonations' : 'tabRequests');
             document.getElementById(activeBtn).className = "tab-btn font-bold text-xs sm:text-sm px-4 py-2 rounded-xl bg-slate-900 text-white shadow-sm transition";
-
             renderPosts();
         };
 
-        window.applyFilters = function() {
-            renderPosts();
-        };
-
-        window.toggleModal = function(id) {
-            const modal = document.getElementById(id);
-            if (modal) {
-                modal.classList.toggle('hidden');
-            }
-        };
+        window.applyFilters = function() { renderPosts(); };
+        window.toggleModal = function(id) { document.getElementById(id)?.classList.toggle('hidden'); };
 
         window.toggleExpiryField = function(show) {
             const container = document.getElementById('expiryContainer');
@@ -1289,13 +1245,7 @@
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>"']/g, function(m) {
-                return {
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '"': '&quot;',
-                    "'": '&#039;'
-                }[m];
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
             });
         }
     </script>

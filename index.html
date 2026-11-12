@@ -748,7 +748,6 @@
                 <span id="adminSessionBadge" class="bg-slate-800 text-slate-300 font-bold px-2.5 py-1 rounded-lg border border-slate-700 flex items-center gap-1.5">
                     <i class="fa-solid fa-lock text-amber-400"></i> Modo Administrador Restringido
                 </span>
-                <span class="text-slate-400 hidden md:inline">Accede con credenciales para moderar posts y responder mensajes directos.</span>
             </div>
             
             <div class="flex items-center gap-2">
@@ -760,10 +759,17 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer con Contador Real de Visitas -->
     <footer class="bg-white border-t border-slate-200 py-5 px-4 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
             <p>© 2026 FarmaAyuda San Luis Río Colorado - Iniciativa Ciudadana Solidaria.</p>
+            
+            <!-- Contador de visitas real sincronizado con Firebase -->
+            <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1 rounded-xl text-slate-600 font-medium">
+                <i class="fa-solid fa-eye text-brand-500"></i>
+                <span>Visitas totales: <strong id="visitorCountDisplay" class="font-bold text-slate-900">...</strong></span>
+            </div>
+
             <div class="flex gap-4">
                 <a href="#" onclick="toggleModal('modalRules'); return false;" class="hover:underline">Reglas de Seguridad</a>
                 <span>•</span>
@@ -775,7 +781,7 @@
     <!-- Firebase SDK Modular (Realtime Database) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getDatabase, ref, push, set, update, remove, onValue, get, child } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { getDatabase, ref, push, set, update, remove, onValue, get, child, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 
         // ==========================================
         // CONFIGURACIÓN DE FIREBASE (Tus datos reales)
@@ -813,7 +819,33 @@
             listenToPosts();
             listenToAdminMessages();
             await verifyOrInitializeAdminCredentials();
+            incrementAndListenVisitorCount();
         });
+
+        // ==========================================
+        // CONTADOR DE VISITAS REAL EN LA BASE DE DATOS
+        // ==========================================
+        function incrementAndListenVisitorCount() {
+            const viewsRef = ref(db, 'stats/total_views');
+
+            if (!sessionStorage.getItem('farmaayuda_visited')) {
+                runTransaction(viewsRef, (currentViews) => {
+                    return (currentViews || 0) + 1;
+                }).then(() => {
+                    sessionStorage.setItem('farmaayuda_visited', 'true');
+                }).catch(err => {
+                    console.error("Error al actualizar contador de visitas:", err);
+                });
+            }
+
+            onValue(viewsRef, (snapshot) => {
+                const totalViews = snapshot.val() || 0;
+                const counterElement = document.getElementById('visitorCountDisplay');
+                if (counterElement) {
+                    counterElement.innerText = totalViews.toLocaleString();
+                }
+            });
+        }
 
         async function verifyOrInitializeAdminCredentials() {
             const dbRef = ref(db);

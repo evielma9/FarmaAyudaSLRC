@@ -66,9 +66,9 @@
 
                 <div class="flex items-center gap-2 sm:gap-3">
                     <button onclick="toggleModal('modalUserDeactivate')" class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-2 rounded-xl text-xs transition border border-slate-200/60">
-                        <i class="fa-solid fa-key text-slate-500"></i>
-                        <span class="hidden sm:inline">Desactivar con Folio</span>
-                        <span class="sm:hidden">Folio</span>
+                        <i class="fa-solid fa-ban text-slate-500"></i>
+                        <span class="hidden sm:inline">Desactivar Publicación</span>
+                        <span class="sm:hidden">Desactivar</span>
                     </button>
                     <button onclick="toggleModal('modalContactAdmin')" class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-2 rounded-xl text-xs transition border border-slate-200/60">
                         <i class="fa-solid fa-envelope text-slate-500"></i>
@@ -238,24 +238,28 @@
         </div>
     </div>
 
-    <!-- MODAL: Desactivar por usuario con Código Único -->
+    <!-- MODAL: Desactivar Publicación con Código y Correo -->
     <div id="modalUserDeactivate" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative">
             <button onclick="toggleModal('modalUserDeactivate')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center mb-3 text-xl">
-                <i class="fa-solid fa-key"></i>
+                <i class="fa-solid fa-ban"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-900">Desactivar mi Publicación</h3>
+            <h3 class="text-lg font-bold text-slate-900">Desactivar Publicación</h3>
             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Ingresa el <strong>Código Único (Folio)</strong> que se te asignó al publicar para retirarla una vez donado o conseguido el medicamento.
+                Ingresa tu <strong>Código Único (Folio)</strong> y el <strong>Correo Electrónico</strong> con el que registraste la publicación para retirarla.
             </p>
 
             <form onsubmit="handleUserDeactivate(event)" class="mt-4 space-y-3">
                 <div>
-                    <label for="inputDeactivateCode" class="block font-bold text-xs text-slate-700 mb-1">Código Único (ej. FA-8X92K)</label>
+                    <label for="inputDeactivateCode" class="block font-bold text-xs text-slate-700 mb-1">Código Único (Folio) *</label>
                     <input type="text" id="inputDeactivateCode" required placeholder="FA-XXXXX" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl uppercase font-mono tracking-wider text-sm focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                </div>
+                <div>
+                    <label for="inputDeactivateEmail" class="block font-bold text-xs text-slate-700 mb-1">Correo Electrónico de Registro *</label>
+                    <input type="email" id="inputDeactivateEmail" required placeholder="correo@ejemplo.com" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
                 </div>
                 <div id="deactivateMsg" class="hidden text-xs p-2.5 rounded-lg"></div>
                 <div class="flex justify-end gap-2 pt-2">
@@ -289,7 +293,7 @@
             </div>
 
             <p class="text-[11px] text-slate-500 italic mb-4">
-                Utiliza este código para dar de baja tu publicación cuando se complete la donación.
+                Utiliza este código y tu correo para dar de baja tu publicación cuando se complete la donación.
             </p>
 
             <button onclick="toggleModal('modalSuccessCode')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-sm transition">
@@ -308,7 +312,7 @@
                 <i class="fa-solid fa-user-shield"></i>
             </div>
             <h3 class="text-lg font-bold text-slate-900">Acceso de Administrador</h3>
-            <p class="text-xs text-slate-500 mt-0.5 mb-4">Solo para moderadores autorizados.</p>
+            <p class="text-xs text-slate-500 mt-0.5 mb-4">Credenciales sincronizadas desde la base de datos.</p>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-3 text-xs">
                 <div>
@@ -320,7 +324,7 @@
                     <input type="password" id="adminPass" required placeholder="••••••••" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-slate-800 outline-none transition">
                 </div>
                 <div id="adminLoginErr" class="hidden text-xs text-red-600 bg-red-50 p-2 rounded-lg font-medium">
-                    Credenciales incorrectas. (Demo: admin / admin123)
+                    Usuario o contraseña incorrectos.
                 </div>
                 <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl transition text-sm">
                     Ingresar al Panel
@@ -337,7 +341,7 @@
                     <i class="fa-solid fa-sliders text-amber-400 text-lg"></i>
                     <div>
                         <h3 class="text-base sm:text-lg font-bold">Panel de Administración</h3>
-                        <p class="text-[11px] text-slate-400">Moderación de contenido y mensajes recibidos</p>
+                        <p class="text-[11px] text-slate-400">Moderación de contenido, mensajes y seguridad</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
@@ -361,34 +365,56 @@
                     <span>Mensajes Recibidos</span>
                     <span id="badgeUnreadMsgsCount" class="bg-brand-500 text-white px-2 py-0.5 rounded-full text-[10px]">0</span>
                 </button>
+                <button id="tabAdminSettings" onclick="switchAdminTab('settings')" class="pb-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-key"></i>
+                    <span>Mantenimiento de Contraseña</span>
+                </button>
             </div>
 
+            <!-- Sección 1: Publicaciones -->
             <div id="sectionAdminPubs" class="flex-1 flex flex-col overflow-hidden">
-                <div class="p-4 bg-slate-50 border-b border-slate-200 grid grid-cols-1 sm:grid-cols-12 gap-3 text-xs">
-                    <div class="sm:col-span-4">
+                <div class="p-4 bg-slate-50 border-b border-slate-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                    <div>
                         <label class="block font-bold text-slate-700 mb-1">Filtrar por Correo</label>
                         <input type="text" id="adminFilterEmail" oninput="renderAdminTable()" placeholder="correo@ejemplo.com" class="w-full px-3 py-2 border border-slate-200 rounded-xl bg-white">
                     </div>
-                    <div class="sm:col-span-4">
+                    <div>
                         <label class="block font-bold text-slate-700 mb-1">Buscar por Folio</label>
                         <input type="text" id="adminFilterCode" oninput="renderAdminTable()" placeholder="Ej. FA-8X92K" class="w-full px-3 py-2 border border-slate-200 rounded-xl bg-white uppercase font-mono">
                     </div>
-                    <div class="sm:col-span-4">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Filtrar por Tipo</label>
+                        <select id="adminFilterType" onchange="renderAdminTable()" class="w-full py-2 px-3 border border-slate-200 rounded-xl bg-white font-medium">
+                            <option value="all">Todos los tipos</option>
+                            <option value="donation">🟢 Donaciones</option>
+                            <option value="request">🔵 Solicitudes</option>
+                        </select>
+                    </div>
+                    <div>
                         <label class="block font-bold text-slate-700 mb-1">Filtrar por Estado</label>
                         <select id="adminFilterStatus" onchange="renderAdminTable()" class="w-full py-2 px-3 border border-slate-200 rounded-xl bg-white font-medium">
                             <option value="all">Todos los estados</option>
-                            <option value="pending">⏳ Pendientes de Aprobación</option>
-                            <option value="approved">🟢 Aprobados (Públicos)</option>
+                            <option value="pending">⏳ Pendientes</option>
+                            <option value="approved">🟢 Aprobados</option>
                             <option value="inactive">⚪ Desactivados</option>
                         </select>
                     </div>
+                </div>
+
+                <!-- Barra de Ordenamiento por Fecha -->
+                <div class="px-4 py-2 bg-slate-100 border-b border-slate-200 flex justify-between items-center text-xs">
+                    <span class="font-bold text-slate-600">Ordenar listado de publicaciones:</span>
+                    <select id="adminSortOrder" onchange="renderAdminTable()" class="py-1.5 px-3 border border-slate-200 rounded-xl bg-white font-medium">
+                        <option value="oldest">📅 Más antiguas primero (Revisar rezagadas)</option>
+                        <option value="newest">📅 Más recientes primero</option>
+                    </select>
                 </div>
 
                 <div class="p-4 overflow-y-auto custom-scrollbar flex-1">
                     <table class="w-full text-left text-xs border-collapse">
                         <thead>
                             <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
-                                <th class="p-2.5">Folio</th>
+                                <th class="p-2.5">Fecha / Folio</th>
                                 <th class="p-2.5">Medicamento</th>
                                 <th class="p-2.5">Tipo</th>
                                 <th class="p-2.5">Contacto</th>
@@ -401,8 +427,36 @@
                 </div>
             </div>
 
+            <!-- Sección 2: Mensajes -->
             <div id="sectionAdminMsgs" class="flex-1 overflow-y-auto p-4 custom-scrollbar hidden space-y-3">
                 <div id="adminMsgsContainer" class="space-y-3 text-xs"></div>
+            </div>
+
+            <!-- Sección 3: Mantenimiento de Contraseña Admin -->
+            <div id="sectionAdminSettings" class="flex-1 overflow-y-auto p-6 hidden">
+                <div class="max-w-md mx-auto bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-xs">
+                    <h4 class="text-sm font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-lock text-brand-600"></i> Actualizar Credenciales de Administrador
+                    </h4>
+                    <p class="text-xs text-slate-500 mb-4">
+                        Modifica el usuario y la contraseña de acceso al panel. Los cambios se guardarán de forma segura en la base de datos.
+                    </p>
+
+                    <form onsubmit="handleUpdateAdminCredentials(event)" class="space-y-3 text-xs">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Nuevo Usuario Admin</label>
+                            <input type="text" id="settingsNewUser" required placeholder="admin" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Nueva Contraseña</label>
+                            <input type="password" id="settingsNewPass" required placeholder="••••••••" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none">
+                        </div>
+                        <div id="settingsMsg" class="hidden p-2.5 rounded-lg text-xs font-medium"></div>
+                        <button type="submit" id="btnUpdatePass" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl transition shadow-sm">
+                            Guardar Nuevos Datos
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -483,8 +537,8 @@
                         <input type="tel" id="contactPhone" required placeholder="653 123 4567" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
                     </div>
                     <div>
-                        <label for="contactEmail" class="block font-bold text-slate-700 mb-1">Correo Electrónico (Opcional)</label>
-                        <input type="email" id="contactEmail" placeholder="correo@ejemplo.com" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                        <label for="contactEmail" class="block font-bold text-slate-700 mb-1">Correo Electrónico <span class="text-red-500">*</span></label>
+                        <input type="email" id="contactEmail" required placeholder="correo@ejemplo.com" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
                     </div>
                 </div>
 
@@ -618,7 +672,7 @@
     <!-- Firebase SDK Modular (Realtime Database) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getDatabase, ref, push, set, update, remove, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { getDatabase, ref, push, set, update, remove, onValue, get, child } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 
         // ==========================================
         // CONFIGURACIÓN DE FIREBASE (Tus datos reales)
@@ -652,11 +706,26 @@
             return `${prefix}-${code}`;
         }
 
-        // Cargar datos en tiempo real desde Realtime Database
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', async () => {
             listenToPosts();
             listenToAdminMessages();
+            await verifyOrInitializeAdminCredentials();
         });
+
+        async function verifyOrInitializeAdminCredentials() {
+            const dbRef = ref(db);
+            try {
+                const snapshot = await get(child(dbRef, 'config/admin'));
+                if (!snapshot.exists()) {
+                    await set(ref(db, 'config/admin'), {
+                        user: 'admin',
+                        pass: 'admin1234'
+                    });
+                }
+            } catch (error) {
+                console.error("Error al verificar credenciales en DB:", error);
+            }
+        }
 
         function listenToPosts() {
             const postsRef = ref(db, 'medications');
@@ -795,7 +864,7 @@
                 const expiry = document.getElementById('medExpiry').value;
                 const zone = document.getElementById('medZone').value;
                 const phone = document.getElementById('contactPhone').value.trim();
-                const email = document.getElementById('contactEmail').value.trim();
+                const email = document.getElementById('contactEmail').value.trim().toLowerCase();
                 const notes = document.getElementById('medNotes').value.trim();
 
                 const publicId = generateCode('FA');
@@ -867,9 +936,11 @@
             }
         };
 
+        // Desactivar validando Folio y Correo
         window.handleUserDeactivate = async function(e) {
             e.preventDefault();
             const codeInput = document.getElementById('inputDeactivateCode').value.trim().toUpperCase();
+            const emailInput = document.getElementById('inputDeactivateEmail').value.trim().toLowerCase();
             const msg = document.getElementById('deactivateMsg');
             const btn = document.getElementById('btnUserDeactivateSubmit');
 
@@ -877,7 +948,14 @@
 
             if (!post) {
                 msg.className = "text-xs p-2.5 rounded-lg bg-red-100 text-red-800 block font-medium";
-                msg.innerText = "No se encontró ninguna publicación con ese Código Único.";
+                msg.innerText = "No se encontró ninguna publicación con ese Código Único (Folio).";
+                return;
+            }
+
+            // Validar que el correo coincida exactamente con el de registro
+            if (!post.email || post.email.toLowerCase().trim() !== emailInput) {
+                msg.className = "text-xs p-2.5 rounded-lg bg-red-100 text-red-800 block font-medium";
+                msg.innerText = "El correo electrónico no coincide con el registrado en esta publicación.";
                 return;
             }
 
@@ -899,6 +977,7 @@
                 setTimeout(() => {
                     toggleModal('modalUserDeactivate');
                     document.getElementById('inputDeactivateCode').value = '';
+                    document.getElementById('inputDeactivateEmail').value = '';
                     msg.className = "hidden text-xs p-2.5 rounded-lg";
                 }, 1500);
             } catch (err) {
@@ -911,22 +990,63 @@
             }
         };
 
-        window.handleAdminLogin = function(e) {
+        window.handleAdminLogin = async function(e) {
             e.preventDefault();
             const u = document.getElementById('adminUser').value.trim();
             const p = document.getElementById('adminPass').value.trim();
             const err = document.getElementById('adminLoginErr');
 
-            if ((u === 'admin' && p === 'admin123') || (u === 'moderador' && p === 'slrc2026')) {
-                isAdminLoggedIn = true;
-                err.classList.add('hidden');
-                toggleModal('modalAdminLogin');
-                updateAdminBadge();
-                toggleModal('modalAdminDashboard');
-                renderAdminTable();
-                renderAdminMessages();
-            } else {
+            try {
+                const snapshot = await get(child(ref(db), 'config/admin'));
+                if (snapshot.exists()) {
+                    const adminData = snapshot.val();
+                    if (u === adminData.user && p === adminData.pass) {
+                        isAdminLoggedIn = true;
+                        err.classList.add('hidden');
+                        document.getElementById('adminPass').value = '';
+                        toggleModal('modalAdminLogin');
+                        updateAdminBadge();
+                        toggleModal('modalAdminDashboard');
+                        renderAdminTable();
+                        renderAdminMessages();
+                    } else {
+                        err.classList.remove('hidden');
+                    }
+                } else {
+                    err.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error("Error al validar login:", error);
                 err.classList.remove('hidden');
+            }
+        };
+
+        window.handleUpdateAdminCredentials = async function(e) {
+            e.preventDefault();
+            const newUser = document.getElementById('settingsNewUser').value.trim();
+            const newPass = document.getElementById('settingsNewPass').value.trim();
+            const msg = document.getElementById('settingsMsg');
+            const btn = document.getElementById('btnUpdatePass');
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Guardando...`;
+
+            try {
+                await set(ref(db, 'config/admin'), {
+                    user: newUser,
+                    pass: newPass
+                });
+
+                msg.className = "p-2.5 rounded-lg text-xs font-medium bg-emerald-100 text-emerald-800 block";
+                msg.innerText = "¡Credenciales actualizadas en la base de datos con éxito!";
+                document.getElementById('settingsNewPass').value = '';
+            } catch (err) {
+                console.error("Error al actualizar credenciales:", err);
+                msg.className = "p-2.5 rounded-lg text-xs font-medium bg-red-100 text-red-800 block";
+                msg.innerText = "Error al actualizar las credenciales.";
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `Guardar Nuevos Datos`;
             }
         };
 
@@ -964,23 +1084,33 @@
         window.switchAdminTab = function(tab) {
             const secPubs = document.getElementById('sectionAdminPubs');
             const secMsgs = document.getElementById('sectionAdminMsgs');
+            const secSettings = document.getElementById('sectionAdminSettings');
+            
             const tabPubs = document.getElementById('tabAdminPubs');
             const tabMsgs = document.getElementById('tabAdminMsgs');
+            const tabSettings = document.getElementById('tabAdminSettings');
+
+            secPubs.classList.add('hidden');
+            secMsgs.classList.add('hidden');
+            secSettings.classList.add('hidden');
+            tabPubs.className = "pb-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center gap-2";
+            tabMsgs.className = "pb-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center gap-2";
+            tabSettings.className = "pb-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center gap-2";
 
             if (tab === 'pubs') {
                 secPubs.classList.remove('hidden');
-                secMsgs.classList.add('hidden');
                 tabPubs.className = "pb-3 border-b-2 border-brand-600 text-brand-600 flex items-center gap-2";
-                tabMsgs.className = "pb-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center gap-2";
-            } else {
-                secPubs.classList.add('hidden');
+            } else if (tab === 'msgs') {
                 secMsgs.classList.remove('hidden');
                 tabMsgs.className = "pb-3 border-b-2 border-brand-600 text-brand-600 flex items-center gap-2";
-                tabPubs.className = "pb-3 border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center gap-2";
                 renderAdminMessages();
+            } else if (tab === 'settings') {
+                secSettings.classList.remove('hidden');
+                tabSettings.className = "pb-3 border-b-2 border-brand-600 text-brand-600 flex items-center gap-2";
             }
         };
 
+        // Renderizado de tabla de administración con filtros de Tipo y Ordenamiento por Fecha
         window.renderAdminTable = function() {
             const tbody = document.getElementById('adminTableBody');
             if (!tbody) return;
@@ -988,13 +1118,27 @@
 
             const filterEmail = (document.getElementById('adminFilterEmail')?.value || '').toLowerCase().trim();
             const filterCode = (document.getElementById('adminFilterCode')?.value || '').toLowerCase().trim();
+            const filterType = document.getElementById('adminFilterType')?.value || 'all';
             const filterStatus = document.getElementById('adminFilterStatus')?.value || 'all';
+            const sortOrder = document.getElementById('adminSortOrder')?.value || 'oldest';
 
-            const filtered = allPosts.filter(p => {
+            let filtered = allPosts.filter(p => {
                 if (filterStatus !== 'all' && p.status !== filterStatus) return false;
+                if (filterType !== 'all' && p.type !== filterType) return false;
                 if (filterEmail && !(p.email || '').toLowerCase().includes(filterEmail)) return false;
                 if (filterCode && !(p.publicId || '').toLowerCase().includes(filterCode)) return false;
                 return true;
+            });
+
+            // Ordenar por fecha (createdAt)
+            filtered.sort((a, b) => {
+                const timeA = a.createdAt || 0;
+                const timeB = b.createdAt || 0;
+                if (sortOrder === 'oldest') {
+                    return timeA - timeB; // Más viejas primero
+                } else {
+                    return timeB - timeA; // Más recientes primero
+                }
             });
 
             if (filtered.length === 0) {
@@ -1011,13 +1155,18 @@
                 else if (p.status === 'pending') statusBadge = '<span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">⏳ Pendiente</span>';
                 else if (p.status === 'inactive') statusBadge = '<span class="bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">⚪ Desactivado</span>';
 
+                const formattedDate = p.createdAt ? new Date(p.createdAt).toLocaleDateString() : 'Sin fecha';
+
                 tr.innerHTML = `
-                    <td class="p-2.5 font-mono font-bold text-brand-700">${p.publicId || 'N/A'}</td>
+                    <td class="p-2.5">
+                        <div class="font-mono font-bold text-brand-700">${p.publicId || 'N/A'}</div>
+                        <div class="text-[10px] text-slate-400">${formattedDate}</div>
+                    </td>
                     <td class="p-2.5">
                         <strong class="text-slate-900">${escapeHtml(p.name)}</strong>
                         <div class="text-[10px] text-slate-500">${escapeHtml(p.dosage)}</div>
                     </td>
-                    <td class="p-2.5 capitalize font-medium">${p.type === 'donation' ? 'Donación' : 'Solicitud'}</td>
+                    <td class="p-2.5 capitalize font-medium">${p.type === 'donation' ? '🟢 Donación' : '🔵 Solicitud'}</td>
                     <td class="p-2.5">
                         <div>Tel: ${escapeHtml(p.phone)}</div>
                         <div class="text-[10px] text-slate-400">${escapeHtml(p.email || 'Sin correo')}</div>

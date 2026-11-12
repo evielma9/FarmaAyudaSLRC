@@ -615,14 +615,13 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK Modular -->
+    <!-- Firebase SDK Modular (Realtime Database) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getDatabase, ref, push, set, update, remove, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 
         // ==========================================
-        // CONFIGURACIÓN DE FIREBASE (Tus datos reales)[cite: 4]
+        // CONFIGURACIÓN DE FIREBASE (Tus datos reales)
         // ==========================================
         const firebaseConfig = {
             apiKey: "AIzaSyBYTJqmJzVxgRyV_BYiZNjMEtfjeOAFUFQ",
@@ -636,10 +635,8 @@
         };
 
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        const db = getDatabase(app);
 
-        let currentUser = null;
         let allPosts = [];
         let allMessages = [];
         let currentTab = 'all';
@@ -655,36 +652,22 @@
             return `${prefix}-${code}`;
         }
 
-        window.addEventListener('DOMContentLoaded', async () => {
-            try {
-                if (!auth.currentUser) {
-                    await signInAnonymously(auth);
-                }
-            } catch (err) {
-                console.warn("Auth Firebase error:", err);
-            }
-        });
-
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            if (user) {
-                listenToPosts();
-                listenToAdminMessages();
-            } else {
-                signInAnonymously(auth).catch(e => console.error("Error re-autenticando:", e));
-            }
+        // Cargar datos en tiempo real desde Realtime Database
+        window.addEventListener('DOMContentLoaded', () => {
+            listenToPosts();
+            listenToAdminMessages();
         });
 
         function listenToPosts() {
-            const postsColl = collection(db, 'medications');
-
-            onSnapshot(postsColl, (snapshot) => {
-                const posts = [];
-                snapshot.forEach((docSnap) => {
-                    posts.push({ id: docSnap.id, ...docSnap.data() });
-                });
-
-                allPosts = posts;
+            const postsRef = ref(db, 'medications');
+            onValue(postsRef, (snapshot) => {
+                const data = snapshot.val();
+                allPosts = [];
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                        allPosts.push({ id: key, ...data[key] });
+                    });
+                }
                 updateCounts();
                 renderPosts();
                 if (isAdminLoggedIn) renderAdminTable();
@@ -694,15 +677,15 @@
         }
 
         function listenToAdminMessages() {
-            const msgsColl = collection(db, 'admin_messages');
-
-            onSnapshot(msgsColl, (snapshot) => {
-                const msgs = [];
-                snapshot.forEach((docSnap) => {
-                    msgs.push({ id: docSnap.id, ...docSnap.data() });
-                });
-
-                allMessages = msgs;
+            const msgsRef = ref(db, 'admin_messages');
+            onValue(msgsRef, (snapshot) => {
+                const data = snapshot.val();
+                allMessages = [];
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                        allMessages.push({ id: key, ...data[key] });
+                    });
+                }
                 updateCounts();
                 if (isAdminLoggedIn) renderAdminMessages();
             }, (err) => {
@@ -806,10 +789,6 @@
             btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Guardando...`;
 
             try {
-                if (!auth.currentUser) {
-                    await signInAnonymously(auth);
-                }
-
                 const type = document.querySelector('input[name="postType"]:checked').value;
                 const name = document.getElementById('medName').value.trim();
                 const dosage = document.getElementById('medDosage').value.trim();
@@ -836,16 +815,8 @@
                     createdAt: Date.now()
                 };
 
-                const postsColl = collection(db, 'medications');
-                
-                const timeoutPromise = new Promise((_, reject) => 
-                    setTimeout(() => reject(new Error('Tiempo de espera agotado. Revisa tu conexión a internet o reglas de Firestore.')), 8000)
-                );
-
-                await Promise.race([
-                    addDoc(postsColl, newPost),
-                    timeoutPromise
-                ]);
+                const postsRef = ref(db, 'medications');
+                await push(postsRef, newPost);
                 
                 document.getElementById('formPublish').reset();
                 toggleModal('modalPublish');
@@ -855,7 +826,7 @@
 
             } catch (error) {
                 console.error("Error al guardar publicación:", error);
-                alert("Hubo un error al guardar la publicación: " + (error.message || "Verifica tu conexión o permisos."));
+                alert("Hubo un error al guardar la publicación: " + error.message);
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `Enviar a Revisión`;
@@ -869,8 +840,6 @@
             btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Enviando...`;
 
             try {
-                if (!auth.currentUser) await signInAnonymously(auth);
-
                 const msgFolio = generateCode('MSG');
                 const newMsg = {
                     publicId: msgFolio,
@@ -883,8 +852,8 @@
                     createdAt: Date.now()
                 };
 
-                const msgsColl = collection(db, 'admin_messages');
-                await addDoc(msgsColl, newMsg);
+                const msgsRef = ref(db, 'admin_messages');
+                await push(msgsRef, newMsg);
 
                 alert(`¡Mensaje enviado al administrador con éxito!\nTu Folio de Atención es: ${msgFolio}`);
                 toggleModal('modalContactAdmin');
@@ -922,8 +891,8 @@
             btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Desactivando...`;
 
             try {
-                const postRef = doc(db, 'medications', post.id);
-                await updateDoc(postRef, { status: 'inactive' });
+                const postRef = ref(db, `medications/${post.id}`);
+                await update(postRef, { status: 'inactive' });
                 
                 msg.className = "text-xs p-2.5 rounded-lg bg-emerald-100 text-emerald-800 block font-medium";
                 msg.innerText = "¡Publicación desactivada con éxito!";
@@ -1123,8 +1092,8 @@
 
         window.toggleMsgRead = async function(id, status) {
             try {
-                const msgRef = doc(db, 'admin_messages', id);
-                await updateDoc(msgRef, { read: status });
+                const msgRef = ref(db, `admin_messages/${id}`);
+                await update(msgRef, { read: status });
             } catch (err) {
                 console.error("Error al actualizar lectura mensaje:", err);
             }
@@ -1132,8 +1101,8 @@
 
         window.changeStatus = async function(id, newStatus) {
             try {
-                const postRef = doc(db, 'medications', id);
-                await updateDoc(postRef, { status: newStatus });
+                const postRef = ref(db, `medications/${id}`);
+                await update(postRef, { status: newStatus });
             } catch (err) {
                 console.error("Error al actualizar estado admin:", err);
             }
@@ -1142,8 +1111,8 @@
         window.deletePostAdmin = async function(id) {
             if (!confirm("¿Eliminar definitivamente esta publicación?")) return;
             try {
-                const postRef = doc(db, 'medications', id);
-                await deleteDoc(postRef);
+                const postRef = ref(db, `medications/${id}`);
+                await remove(postRef);
             } catch (err) {
                 console.error("Error al eliminar admin:", err);
             }

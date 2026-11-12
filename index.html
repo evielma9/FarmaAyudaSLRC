@@ -185,7 +185,7 @@
             <h3 class="text-base font-bold text-slate-800">No se encontraron publicaciones</h3>
             <p class="text-xs text-slate-500 max-w-md mx-auto mt-1">Intenta ajustar los filtros de búsqueda o sé el primero en publicar un artículo.</p>
             <button onclick="toggleModal('modalPublish')" class="mt-4 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-sm transition">
-                + Crear nueva publicación
+                + Solicitar / Donar
             </button>
         </div>
     </main>
@@ -912,7 +912,6 @@
                     badgeIcon = 'fa-hand-holding-medical text-sky-600';
                     badgeText = 'SOLICITUD';
                 } else if (isAccessory) {
-                    // Si es accesorio, revisamos si es donación o solicitud registrada en subType
                     if (post.subType === 'request') {
                         badgeClass = 'bg-sky-100 text-sky-800 border border-sky-200';
                         badgeIcon = 'fa-wheelchair text-sky-600';
@@ -948,7 +947,7 @@
                         <h3 class="text-sm font-bold text-slate-900 leading-snug truncate">${escapeHtml(post.name)}</h3>
                         <p class="text-[11px] font-semibold text-slate-600 truncate">${escapeHtml(post.dosage)}</p>
 
-                        {isDonation && post.expiry ? `
+                        ${isDonation && post.expiry ? `
                             <div class="mt-1.5 text-[10px] text-slate-600 flex items-center gap-1 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded-md w-fit font-medium">
                                 <i class="fa-regular fa-calendar-check text-emerald-600"></i>
                                 <span>Caduca: <strong>${escapeHtml(post.expiry)}</strong></span>
@@ -1008,7 +1007,7 @@
                 const newPost = {
                     publicId,
                     type,
-                    subType, // Guarda si el accesorio es donación o solicitud
+                    subType,
                     name,
                     dosage,
                     expiry: (type === 'donation' || (type === 'accessory' && subType === 'donation')) ? expiry : '',
@@ -1583,7 +1582,6 @@
                 accessorySubTypeContainer.classList.add('hidden');
             } else if (type === 'accessory') {
                 accessorySubTypeContainer.classList.remove('hidden');
-                // Dependiendo del sub-tipo seleccionado de accesorio, mostramos u ocultamos caducidad
                 const subType = document.querySelector('input[name="accessoryAction"]:checked').value;
                 if (subType === 'donation') {
                     expiryContainer.style.display = 'block';
@@ -1595,7 +1593,6 @@
             }
         };
 
-        // Escuchar cambios en el sub-tipo de accesorio para mostrar caducidad si es donación de accesorio con fecha
         document.addEventListener('change', (e) => {
             if (e.target && e.target.name === 'accessoryAction') {
                 const expiryContainer = document.getElementById('expiryContainer');

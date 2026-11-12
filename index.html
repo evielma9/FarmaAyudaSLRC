@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FarmaAyuda San Luis | Red Solidaria de Medicamentos</title>
+    <title>FarmaAyuda San Luis | Red Solidaria de Medicamentos y Accesorios</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome para iconos -->
@@ -48,34 +48,34 @@
     <!-- Header Principal -->
     <header class="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 shadow-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-16 sm:h-20">
                 <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-600 via-brand-500 to-hope-500 flex items-center justify-center text-white shadow-md shadow-brand-500/25">
-                        <i class="fa-solid fa-heart-pulse text-2xl"></i>
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 via-brand-500 to-hope-500 flex items-center justify-center text-white shadow-md shadow-brand-500/25">
+                        <i class="fa-solid fa-heart-pulse text-xl"></i>
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
-                            <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight leading-none">
+                            <h1 class="text-lg sm:text-2xl font-extrabold text-slate-900 tracking-tight leading-none">
                                 Farma<span class="text-brand-600">Ayuda</span>
                             </h1>
                             <span class="bg-brand-50 text-brand-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-brand-100 hidden sm:inline-block">San Luis R.C.</span>
                         </div>
-                        <p class="text-[11px] text-slate-500 font-medium mt-0.5">Red comunitaria 100% gratuita</p>
+                        <p class="text-[11px] text-slate-500 font-medium mt-0.5">Medicamentos y Equipo Médico Gratuito</p>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2 sm:gap-3">
                     <button onclick="toggleModal('modalUserDeactivate')" class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-2 rounded-xl text-xs transition border border-slate-200/60">
                         <i class="fa-solid fa-ban text-slate-500"></i>
-                        <span class="hidden sm:inline">Desactivar Publicación</span>
-                        <span class="sm:hidden">Desactivar</span>
+                        <span class="hidden sm:inline">Desactivar</span>
+                        <span class="sm:hidden">Baja</span>
                     </button>
                     <button onclick="toggleModal('modalContactAdmin')" class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-2 rounded-xl text-xs transition border border-slate-200/60">
                         <i class="fa-solid fa-envelope text-slate-500"></i>
                         <span class="hidden sm:inline">Contacto Admin</span>
                         <span class="sm:hidden">Admin</span>
                     </button>
-                    <button onclick="toggleModal('modalPublish')" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-bold px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 text-xs sm:text-sm">
+                    <button onclick="toggleModal('modalPublish')" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-bold px-4 py-2 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 text-xs sm:text-sm">
                         <i class="fa-solid fa-plus text-xs"></i>
                         <span>Publicar</span>
                     </button>
@@ -85,51 +85,52 @@
     </header>
 
     <!-- Banner Aviso Legal y Seguridad -->
-    <section class="bg-amber-50/90 border-b border-amber-200/80 px-4 py-3">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-amber-900 text-xs sm:text-sm">
-            <div class="flex items-start gap-2.5">
-                <i class="fa-solid fa-shield-cat text-amber-600 text-base mt-0.5 shrink-0"></i>
+    <section class="bg-amber-50/90 border-b border-amber-200/80 px-4 py-2.5">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-amber-900 text-xs">
+            <div class="flex items-start gap-2">
+                <i class="fa-solid fa-shield-cat text-amber-600 text-sm mt-0.5 shrink-0"></i>
                 <p class="leading-snug">
-                    <strong class="font-bold">Intercambio Seguro y Ciudadano:</strong> Sin fines de lucro. Prohibida la venta de fármacos y la transacción de sustancias controladas o bajo receta restringida.
+                    <strong class="font-bold">Intercambio Seguro y Ciudadano:</strong> Sin fines de lucro. Prohibida la venta de fármacos, equipo médico y sustancias controladas.
                 </p>
             </div>
             <button onclick="toggleModal('modalRules')" class="text-amber-800 underline font-bold hover:text-amber-950 shrink-0 self-end sm:self-auto text-xs flex items-center gap-1">
-                Ver Reglas de Seguridad <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                Ver Reglas <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </button>
         </div>
     </section>
 
     <!-- Hero / Buscador Principal -->
-    <section class="bg-gradient-to-b from-white via-slate-50/50 to-slate-100/80 border-b border-slate-200 py-10 sm:py-14 px-4 relative overflow-hidden">
+    <section class="bg-gradient-to-b from-white via-slate-50/50 to-slate-100/80 border-b border-slate-200 py-6 sm:py-8 px-4 relative overflow-hidden">
         <div class="max-w-4xl mx-auto text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-bold mb-3">
+            <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-bold mb-2">
                 <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
                 Comunidad San Luis Río Colorado, Sonora
             </div>
-            <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                Solidaridad para la salud de todos
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Solidaridad para la salud y bienestar
             </h2>
-            <p class="mt-3 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                ¿Te sobró un medicamento en buen estado o buscas uno urgente? Conéctate de forma gratuita con vecinos de tu colonia.
+            <p class="mt-2 text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                ¿Te sobró un medicamento, una silla de ruedas o buscas apoyo urgente? Conéctate de forma gratuita con vecinos de tu colonia.
             </p>
 
             <!-- Barra de Búsqueda y Filtros -->
-            <div class="mt-8 bg-white p-3 sm:p-4 rounded-2xl shadow-xl shadow-slate-200/70 border border-slate-200/80 grid grid-cols-1 md:grid-cols-12 gap-3 text-left">
+            <div class="mt-5 bg-white p-3 rounded-2xl shadow-xl shadow-slate-200/70 border border-slate-200/80 grid grid-cols-1 md:grid-cols-12 gap-2 text-left">
                 <div class="relative md:col-span-5">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Ej. Paracetamol, Losartán, Insulina..." class="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition font-medium">
+                    <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Ej. Paracetamol, Silla de ruedas, Muletas..." class="w-full pl-10 pr-4 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition font-medium">
                 </div>
 
                 <div class="md:col-span-3">
-                    <select id="filterType" onchange="applyFilters()" class="w-full py-2.5 px-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-slate-700 font-medium transition">
+                    <select id="filterType" onchange="applyFilters()" class="w-full py-2 px-3 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-slate-700 font-medium transition">
                         <option value="all">Todas las publicaciones</option>
-                        <option value="donation">🟢 Disponibles (Donación)</option>
-                        <option value="request">🔵 Necesitan (Solicitud)</option>
+                        <option value="donation">🟢 Donación Medicamento</option>
+                        <option value="request">🔵 Solicitud Medicamento</option>
+                        <option value="accessory">🟣 Accesorios / Equipo Médico</option>
                     </select>
                 </div>
 
                 <div class="md:col-span-4">
-                    <select id="filterZone" onchange="applyFilters()" class="w-full py-2.5 px-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-slate-700 font-medium transition">
+                    <select id="filterZone" onchange="applyFilters()" class="w-full py-2 px-3 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-slate-700 font-medium transition">
                         <option value="all">Todas las zonas (San Luis R.C.)</option>
                         <option value="Centro">Colonia Centro</option>
                         <option value="Comercial">Colonia Comercial</option>
@@ -146,40 +147,44 @@
     </section>
 
     <!-- Contenido Principal -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
-        <div class="flex items-center justify-between border-b border-slate-200 mb-6 pb-2">
-            <div class="flex gap-2 sm:gap-3 overflow-x-auto pb-1">
-                <button id="tabAll" onclick="setTab('all')" class="tab-btn font-bold text-xs sm:text-sm px-4 py-2 rounded-xl bg-slate-900 text-white shadow-sm transition">
-                    Todos <span id="countAll" class="ml-1.5 bg-white/20 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-1 w-full">
+        <div class="flex items-center justify-between border-b border-slate-200 mb-4 pb-2">
+            <div class="flex gap-2 overflow-x-auto pb-1">
+                <button id="tabAll" onclick="setTab('all')" class="tab-btn font-bold text-xs px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-sm transition">
+                    Todos <span id="countAll" class="ml-1 bg-white/20 text-white text-[10px] px-1.5 py-0.2 rounded-full">0</span>
                 </button>
-                <button id="tabDonations" onclick="setTab('donation')" class="tab-btn text-slate-600 hover:text-slate-900 font-semibold text-xs sm:text-sm px-4 py-2 rounded-xl transition hover:bg-slate-100">
-                    🟢 Donaciones Disponibles <span id="countDonations" class="ml-1.5 bg-slate-200 text-slate-700 text-xs px-2 py-0.5 rounded-full">0</span>
+                <button id="tabDonations" onclick="setTab('donation')" class="tab-btn text-slate-600 hover:text-slate-900 font-semibold text-xs px-3 py-1.5 rounded-xl transition hover:bg-slate-100">
+                    🟢 Donaciones <span id="countDonations" class="ml-1 bg-slate-200 text-slate-700 text-[10px] px-1.5 py-0.2 rounded-full">0</span>
                 </button>
-                <button id="tabRequests" onclick="setTab('request')" class="tab-btn text-slate-600 hover:text-slate-900 font-semibold text-xs sm:text-sm px-4 py-2 rounded-xl transition hover:bg-slate-100">
-                    🔵 Solicitudes Urgentes <span id="countRequests" class="ml-1.5 bg-slate-200 text-slate-700 text-xs px-2 py-0.5 rounded-full">0</span>
+                <button id="tabRequests" onclick="setTab('request')" class="tab-btn text-slate-600 hover:text-slate-900 font-semibold text-xs px-3 py-1.5 rounded-xl transition hover:bg-slate-100">
+                    🔵 Solicitudes <span id="countRequests" class="ml-1 bg-slate-200 text-slate-700 text-[10px] px-1.5 py-0.2 rounded-full">0</span>
+                </button>
+                <button id="tabAccessories" onclick="setTab('accessory')" class="tab-btn text-slate-600 hover:text-slate-900 font-semibold text-xs px-3 py-1.5 rounded-xl transition hover:bg-slate-100">
+                    🟣 Equipo y Accesorios <span id="countAccessories" class="ml-1 bg-slate-200 text-slate-700 text-[10px] px-1.5 py-0.2 rounded-full">0</span>
                 </button>
             </div>
 
-            <div class="hidden sm:flex items-center gap-2 text-xs text-slate-500 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-2xs">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Moderación Comunitaria Activa</span>
+            <div class="hidden sm:flex items-center gap-1.5 text-[11px] text-slate-500 bg-white border border-slate-200 px-2.5 py-1 rounded-xl shadow-2xs">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Moderación Activa</span>
             </div>
         </div>
 
-        <div id="postsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Grid de tarjetas compactado -->
+        <div id="postsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div class="col-span-full py-16 text-center text-slate-400">
-                <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-brand-500"></i>
-                <p class="text-sm font-medium text-slate-600">Cargando publicaciones activas...</p>
+                <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-brand-500"></i>
+                <p class="text-xs font-medium text-slate-600">Cargando publicaciones activas...</p>
             </div>
         </div>
 
-        <div id="emptyState" class="hidden col-span-full py-16 text-center bg-white rounded-2xl border border-dashed border-slate-300 p-8 shadow-2xs">
-            <div class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto text-slate-400 mb-4 text-2xl">
+        <div id="emptyState" class="hidden col-span-full py-12 text-center bg-white rounded-2xl border border-dashed border-slate-300 p-6 shadow-2xs">
+            <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center mx-auto text-slate-400 mb-3 text-xl">
                 <i class="fa-solid fa-prescription-bottle-medical"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-800">No se encontraron medicamentos</h3>
-            <p class="text-sm text-slate-500 max-w-md mx-auto mt-1">Intenta ajustar los filtros de búsqueda o sé el primero en publicar una donación o solicitud.</p>
-            <button onclick="toggleModal('modalPublish')" class="mt-5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-sm transition">
+            <h3 class="text-base font-bold text-slate-800">No se encontraron publicaciones</h3>
+            <p class="text-xs text-slate-500 max-w-md mx-auto mt-1">Intenta ajustar los filtros de búsqueda o sé el primero en publicar un artículo.</p>
+            <button onclick="toggleModal('modalPublish')" class="mt-4 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-sm transition">
                 + Crear nueva publicación
             </button>
         </div>
@@ -293,7 +298,7 @@
             </div>
 
             <p class="text-[11px] text-slate-500 italic mb-4">
-                Utiliza este código y tu correo para dar de baja tu publicación cuando se complete la donación.
+                Utiliza este código y tu correo para dar de baja tu publicación cuando se complete la donación o préstamo.
             </p>
 
             <button onclick="toggleModal('modalSuccessCode')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-sm transition">
@@ -335,13 +340,13 @@
 
     <!-- MODAL: Panel Completo de Administración -->
     <div id="modalAdminDashboard" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden">
+        <div class="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900 text-white">
                 <div class="flex items-center gap-3">
                     <i class="fa-solid fa-sliders text-amber-400 text-lg"></i>
                     <div>
                         <h3 class="text-base sm:text-lg font-bold">Panel de Administración</h3>
-                        <p class="text-[11px] text-slate-400">Moderación de contenido, mensajes y seguridad</p>
+                        <p class="text-[11px] text-slate-400">Moderación de contenido, fechas de publicación y edición</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
@@ -386,8 +391,9 @@
                         <label class="block font-bold text-slate-700 mb-1">Filtrar por Tipo</label>
                         <select id="adminFilterType" onchange="renderAdminTable()" class="w-full py-2 px-3 border border-slate-200 rounded-xl bg-white font-medium">
                             <option value="all">Todos los tipos</option>
-                            <option value="donation">🟢 Donaciones</option>
-                            <option value="request">🔵 Solicitudes</option>
+                            <option value="donation">🟢 Donación Medicamento</option>
+                            <option value="request">🔵 Solicitud Medicamento</option>
+                            <option value="accessory">🟣 Accesorios / Equipo</option>
                         </select>
                     </div>
                     <div>
@@ -405,7 +411,7 @@
                 <div class="px-4 py-2 bg-slate-100 border-b border-slate-200 flex justify-between items-center text-xs">
                     <span class="font-bold text-slate-600">Ordenar listado de publicaciones:</span>
                     <select id="adminSortOrder" onchange="renderAdminTable()" class="py-1.5 px-3 border border-slate-200 rounded-xl bg-white font-medium">
-                        <option value="oldest">📅 Más antiguas primero (Revisar rezagadas)</option>
+                        <option value="oldest">📅 Más antiguas primero (Revisar rezagadas / Demasiado tiempo)</option>
                         <option value="newest">📅 Más recientes primero</option>
                     </select>
                 </div>
@@ -414,12 +420,13 @@
                     <table class="w-full text-left text-xs border-collapse">
                         <thead>
                             <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
-                                <th class="p-2.5">Fecha / Folio</th>
-                                <th class="p-2.5">Medicamento</th>
+                                <th class="p-2.5">Fecha / Antigüedad</th>
+                                <th class="p-2.5">Folio</th>
+                                <th class="p-2.5">Artículo / Medicamento</th>
                                 <th class="p-2.5">Tipo</th>
                                 <th class="p-2.5">Contacto</th>
                                 <th class="p-2.5">Estado</th>
-                                <th class="p-2.5 text-right">Acciones Directas</th>
+                                <th class="p-2.5 text-right">Acciones Admin</th>
                             </tr>
                         </thead>
                         <tbody id="adminTableBody" class="divide-y divide-slate-100"></tbody>
@@ -461,6 +468,82 @@
         </div>
     </div>
 
+    <!-- MODAL: Editar Publicación (Admin) -->
+    <div id="modalAdminEdit" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-pen text-sm"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Editar Publicación (Admin)</h3>
+                </div>
+                <button onclick="toggleModal('modalAdminEdit')" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <form id="formAdminEdit" onsubmit="handleAdminEditSubmit(event)" class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-sm">
+                <input type="hidden" id="editPostId">
+                
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Nombre del Artículo o Medicamento *</label>
+                    <input type="text" id="editMedName" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Detalle / Presentación *</label>
+                        <input type="text" id="editMedDosage" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                    </div>
+                    <div id="editExpiryContainer">
+                        <label class="block font-bold text-slate-700 mb-1">Fecha Caducidad (si aplica)</label>
+                        <input type="text" id="editMedExpiry" placeholder="MM/AAAA" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Colonia / Zona *</label>
+                    <select id="editMedZone" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition font-medium">
+                        <option value="Centro">Colonia Centro</option>
+                        <option value="Comercial">Colonia Comercial</option>
+                        <option value="Jalisco">Colonia Jalisco</option>
+                        <option value="Campestre">Colonia Campestre</option>
+                        <option value="Burócrata">Colonia Burócrata</option>
+                        <option value="Sonora">Colonia Sonora</option>
+                        <option value="Ruiz Cortinez">Colonia Ruiz Cortínez</option>
+                        <option value="Otras">Otras Colonias / Ejidos</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Teléfono / WhatsApp *</label>
+                        <input type="tel" id="editContactPhone" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Correo Electrónico</label>
+                        <input type="email" id="editContactEmail" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Observaciones / Corrección de Ortografía</label>
+                    <textarea id="editMedNotes" rows="3" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition"></textarea>
+                </div>
+
+                <div class="pt-3 border-t border-slate-100 flex justify-end gap-3">
+                    <button type="button" onclick="toggleModal('modalAdminEdit')" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 transition">
+                        Cancelar
+                    </button>
+                    <button type="submit" id="btnAdminSaveEdit" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold transition shadow-sm">
+                        Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- MODAL: Crear Publicación -->
     <div id="modalPublish" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-100 overflow-hidden">
@@ -485,30 +568,35 @@
                 </div>
 
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1.5">¿Qué deseas realizar? <span class="text-red-500">*</span></label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="flex items-center justify-center gap-2 border border-slate-200 rounded-xl p-3 cursor-pointer hover:bg-emerald-50/50 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50 has-[:checked]:text-emerald-800 font-semibold transition">
+                    <label class="block font-bold text-slate-700 mb-1.5">¿Qué deseas publicar? <span class="text-red-500">*</span></label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <label class="flex items-center justify-center gap-1.5 border border-slate-200 rounded-xl p-2.5 cursor-pointer hover:bg-emerald-50/50 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50 has-[:checked]:text-emerald-800 font-semibold transition text-xs">
                             <input type="radio" name="postType" value="donation" checked class="accent-emerald-600" onchange="toggleExpiryField(true)">
                             <i class="fa-solid fa-hand-holding-heart text-emerald-600"></i>
-                            <span>Tengo para Donar</span>
+                            <span>Donar Med.</span>
                         </label>
-                        <label class="flex items-center justify-center gap-2 border border-slate-200 rounded-xl p-3 cursor-pointer hover:bg-brand-50/50 has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50 has-[:checked]:text-brand-800 font-semibold transition">
+                        <label class="flex items-center justify-center gap-1.5 border border-slate-200 rounded-xl p-2.5 cursor-pointer hover:bg-brand-50/50 has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50 has-[:checked]:text-brand-800 font-semibold transition text-xs">
                             <input type="radio" name="postType" value="request" class="accent-brand-600" onchange="toggleExpiryField(false)">
                             <i class="fa-solid fa-hands-holding-child text-brand-600"></i>
-                            <span>Necesito Medicamento</span>
+                            <span>Pedir Med.</span>
+                        </label>
+                        <label class="flex items-center justify-center gap-1.5 border border-slate-200 rounded-xl p-2.5 cursor-pointer hover:bg-purple-50/50 has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50 has-[:checked]:text-purple-800 font-semibold transition text-xs">
+                            <input type="radio" name="postType" value="accessory" class="accent-purple-600" onchange="toggleExpiryField(false)">
+                            <i class="fa-solid fa-wheelchair text-purple-600"></i>
+                            <span>Accesorio / Equipo</span>
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <label for="medName" class="block font-bold text-slate-700 mb-1">Nombre del Medicamento <span class="text-red-500">*</span></label>
-                    <input type="text" id="medName" required placeholder="Ej. Paracetamol, Amoxicilina, Salbutamol" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                    <label for="medName" class="block font-bold text-slate-700 mb-1">Nombre del Medicamento o Accesorio <span class="text-red-500">*</span></label>
+                    <input type="text" id="medName" required placeholder="Ej. Silla de ruedas, Muletas, Insulina..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label for="medDosage" class="block font-bold text-slate-700 mb-1">Dosis / Presentación <span class="text-red-500">*</span></label>
-                        <input type="text" id="medDosage" required placeholder="Ej. 500mg (Caja 10 tabs)" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
+                        <label for="medDosage" class="block font-bold text-slate-700 mb-1">Dosis / Especificación <span class="text-red-500">*</span></label>
+                        <input type="text" id="medDosage" required placeholder="Ej. Adulto / Aluminio / 500mg" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition">
                     </div>
                     <div id="expiryContainer">
                         <label for="medExpiry" class="block font-bold text-slate-700 mb-1">Fecha Caducidad <span class="text-red-500">*</span></label>
@@ -544,7 +632,7 @@
 
                 <div>
                     <label for="medNotes" class="block font-bold text-slate-700 mb-1">Observaciones</label>
-                    <textarea id="medNotes" rows="2" placeholder="Empaque en buen estado, punto preferido de entrega..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition"></textarea>
+                    <textarea id="medNotes" rows="2" placeholder="Buen estado, condiciones de préstamo o entrega..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500 outline-none transition"></textarea>
                 </div>
 
                 <div class="pt-3 border-t border-slate-100 flex justify-end gap-3">
@@ -568,22 +656,22 @@
             
             <div class="text-center mb-5">
                 <div id="contactModalBadge" class="inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2">DONACIÓN</div>
-                <h3 id="contactModalMedName" class="text-xl font-extrabold text-slate-900">Paracetamol 500mg</h3>
+                <h3 id="contactModalMedName" class="text-xl font-extrabold text-slate-900">Silla de ruedas</h3>
                 <p id="contactModalZone" class="text-xs text-slate-500 font-medium mt-0.5">Ubicación: Colonia Centro</p>
             </div>
 
             <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 mb-5 space-y-2 text-xs">
                 <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
-                    <span class="text-slate-500">Dosis / Presentación:</span>
-                    <span id="contactModalDosage" class="font-bold text-slate-800">500mg</span>
+                    <span class="text-slate-500">Detalle / Especificación:</span>
+                    <span id="contactModalDosage" class="font-bold text-slate-800">Adulto</span>
                 </div>
                 <div id="contactModalExpiryRow" class="flex justify-between border-b border-slate-200/60 pb-1.5">
                     <span class="text-slate-500">Caducidad:</span>
-                    <span id="contactModalExpiry" class="font-bold text-slate-800">12/2026</span>
+                    <span id="contactModalExpiry" class="font-bold text-slate-800">-</span>
                 </div>
                 <div class="pt-1">
                     <span class="text-slate-500 block mb-1 font-semibold">Notas:</span>
-                    <p id="contactModalNotes" class="text-slate-700 italic">Empaque en buen estado.</p>
+                    <p id="contactModalNotes" class="text-slate-700 italic">En buen estado.</p>
                 </div>
             </div>
 
@@ -621,7 +709,7 @@
                 </li>
                 <li class="flex items-start gap-2.5">
                     <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
-                    <span><strong>Inspección visual:</strong> Revisa que el empaque esté sellado y que la fecha de caducidad no haya expirado.</span>
+                    <span><strong>Inspección visual:</strong> Revisa el estado de los equipos médicos y que los medicamentos no hayan expirado.</span>
                 </li>
                 <li class="flex items-start gap-2.5">
                     <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
@@ -629,7 +717,7 @@
                 </li>
                 <li class="flex items-start gap-2.5">
                     <i class="fa-solid fa-ban text-red-500 mt-1 shrink-0"></i>
-                    <span><strong>Prohibición de sustancias controladas:</strong> No se permite la publicación de antibióticos de alta restricción o psicotrópicos.</span>
+                    <span><strong>Prohibición de venta:</strong> No se permite la comercialización de ningún artículo o medicamento.</span>
                 </li>
             </ul>
             <button onclick="toggleModal('modalRules')" class="mt-6 w-full bg-slate-900 text-white font-bold py-2.5 rounded-xl text-sm transition">
@@ -658,7 +746,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-6 px-4 text-center text-xs text-slate-500">
+    <footer class="bg-white border-t border-slate-200 py-5 px-4 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
             <p>© 2026 FarmaAyuda San Luis Río Colorado - Iniciativa Ciudadana Solidaria.</p>
             <div class="flex gap-4">
@@ -797,50 +885,71 @@
 
             filtered.forEach(post => {
                 const isDonation = post.type === 'donation';
+                const isRequest = post.type === 'request';
+                const isAccessory = post.type === 'accessory';
+
+                let badgeClass = 'bg-emerald-100 text-emerald-800 border border-emerald-200';
+                let badgeIcon = 'fa-hand-holding-heart text-emerald-600';
+                let badgeText = 'DONACIÓN';
+
+                if (isRequest) {
+                    badgeClass = 'bg-sky-100 text-sky-800 border border-sky-200';
+                    badgeIcon = 'fa-hand-holding-medical text-sky-600';
+                    badgeText = 'SOLICITUD';
+                } else if (isAccessory) {
+                    badgeClass = 'bg-purple-100 text-purple-800 border border-purple-200';
+                    badgeIcon = 'fa-wheelchair text-purple-600';
+                    badgeText = 'ACCESORIO';
+                }
+
+                // Formatear la fecha de subida
+                let dateStr = '';
+                if (post.createdAt) {
+                    dateStr = new Date(post.createdAt).toLocaleDateString();
+                }
 
                 const card = document.createElement('div');
-                card.className = `bg-white rounded-2xl border border-slate-200/90 p-5 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-200 relative`;
+                card.className = `bg-white rounded-xl border border-slate-200/90 p-3 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-200 relative`;
 
                 card.innerHTML = `
                     <div>
-                        <div class="flex items-start justify-between gap-2 mb-3">
-                            <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold px-3 py-1 rounded-full ${
-                                isDonation 
-                                ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' 
-                                : 'bg-sky-100 text-sky-800 border border-sky-200'
-                            }">
-                                <i class="fa-solid ${isDonation ? 'fa-hand-holding-heart text-emerald-600' : 'fa-hand-holding-medical text-sky-600'}"></i>
-                                ${isDonation ? 'DONACIÓN' : 'SOLICITUD'}
+                        <div class="flex items-start justify-between gap-1 mb-1.5">
+                            <span class="inline-flex items-center gap-1 text-[9px] font-extrabold px-2 py-0.5 rounded-full ${badgeClass}">
+                                <i class="fa-solid ${badgeIcon}"></i>
+                                ${badgeText}
                             </span>
 
-                            <span class="text-xs text-slate-500 font-medium flex items-center gap-1">
+                            <span class="text-[10px] text-slate-500 font-medium flex items-center gap-0.5">
                                 <i class="fa-solid fa-location-dot text-slate-400"></i> ${post.zone || 'San Luis R.C.'}
                             </span>
                         </div>
 
-                        <h3 class="text-lg font-bold text-slate-900 leading-snug">${escapeHtml(post.name)}</h3>
-                        <p class="text-xs font-semibold text-slate-600 mt-0.5">${escapeHtml(post.dosage)}</p>
+                        <h3 class="text-sm font-bold text-slate-900 leading-snug truncate">${escapeHtml(post.name)}</h3>
+                        <p class="text-[11px] font-semibold text-slate-600 truncate">${escapeHtml(post.dosage)}</p>
 
                         ${isDonation && post.expiry ? `
-                            <div class="mt-2.5 text-xs text-slate-600 flex items-center gap-1.5 bg-slate-50 border border-slate-100 px-2.5 py-1 rounded-lg w-fit font-medium">
+                            <div class="mt-1.5 text-[10px] text-slate-600 flex items-center gap-1 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded-md w-fit font-medium">
                                 <i class="fa-regular fa-calendar-check text-emerald-600"></i>
                                 <span>Caduca: <strong>${escapeHtml(post.expiry)}</strong></span>
                             </div>
                         ` : ''}
 
                         ${post.notes ? `
-                            <p class="mt-3 text-xs text-slate-600 line-clamp-2 italic bg-slate-50/80 p-2.5 rounded-xl border border-slate-100">
+                            <p class="mt-1.5 text-[10px] text-slate-600 line-clamp-1 italic bg-slate-50/80 p-1.5 rounded-lg border border-slate-100">
                                 "${escapeHtml(post.notes)}"
                             </p>
                         ` : ''}
                     </div>
 
-                    <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[10px] font-mono text-slate-400 bg-slate-100 px-2 py-0.5 rounded font-bold">
-                            Folio: ${post.publicId || 'N/A'}
-                        </span>
-                        <button onclick="openContactModal('${post.id}')" class="bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-2xs">
-                            <i class="fa-solid fa-comment-dots"></i>
+                    <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-[9px] font-mono text-slate-400 font-bold">
+                                ${post.publicId || 'N/A'}
+                            </span>
+                            ${dateStr ? `<span class="text-[9px] text-slate-400"><i class="fa-regular fa-clock text-[8px]"></i> ${dateStr}</span>` : ''}
+                        </div>
+                        <button onclick="openContactModal('${post.id}')" class="bg-brand-600 hover:bg-brand-700 text-white text-[11px] font-bold px-3 py-1 rounded-lg transition flex items-center gap-1 shadow-2xs">
+                            <i class="fa-solid fa-comment-dots text-[10px]"></i>
                             <span>Contactar</span>
                         </button>
                     </div>
@@ -881,7 +990,7 @@
                     email,
                     notes,
                     status: 'pending',
-                    createdAt: Date.now()
+                    createdAt: Date.now() // Grabación de la fecha y hora de subida[cite: 1]
                 };
 
                 const postsRef = ref(db, 'medications');
@@ -936,7 +1045,6 @@
             }
         };
 
-        // Desactivar validando Folio y Correo
         window.handleUserDeactivate = async function(e) {
             e.preventDefault();
             const codeInput = document.getElementById('inputDeactivateCode').value.trim().toUpperCase();
@@ -952,7 +1060,6 @@
                 return;
             }
 
-            // Validar que el correo coincida exactamente con el de registro
             if (!post.email || post.email.toLowerCase().trim() !== emailInput) {
                 msg.className = "text-xs p-2.5 rounded-lg bg-red-100 text-red-800 block font-medium";
                 msg.innerText = "El correo electrónico no coincide con el registrado en esta publicación.";
@@ -1050,6 +1157,55 @@
             }
         };
 
+        window.openAdminEditModal = function(id) {
+            const post = allPosts.find(p => p.id === id);
+            if (!post) return;
+
+            document.getElementById('editPostId').value = post.id;
+            document.getElementById('editMedName').value = post.name || '';
+            document.getElementById('editMedDosage').value = post.dosage || '';
+            document.getElementById('editMedExpiry').value = post.expiry || '';
+            document.getElementById('editMedZone').value = post.zone || 'Centro';
+            document.getElementById('editContactPhone').value = post.phone || '';
+            document.getElementById('editContactEmail').value = post.email || '';
+            document.getElementById('editMedNotes').value = post.notes || '';
+
+            toggleModal('modalAdminEdit');
+        };
+
+        window.handleAdminEditSubmit = async function(e) {
+            e.preventDefault();
+            const id = document.getElementById('editPostId').value;
+            const btn = document.getElementById('btnAdminSaveEdit');
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Guardando...`;
+
+            try {
+                const updatedData = {
+                    name: document.getElementById('editMedName').value.trim(),
+                    dosage: document.getElementById('editMedDosage').value.trim(),
+                    expiry: document.getElementById('editMedExpiry').value.trim(),
+                    zone: document.getElementById('editMedZone').value,
+                    phone: document.getElementById('editContactPhone').value.trim(),
+                    email: document.getElementById('editContactEmail').value.trim().toLowerCase(),
+                    notes: document.getElementById('editMedNotes').value.trim()
+                };
+
+                const postRef = ref(db, `medications/${id}`);
+                await update(postRef, updatedData);
+
+                toggleModal('modalAdminEdit');
+                alert("¡Publicación actualizada con éxito!");
+            } catch (err) {
+                console.error("Error al editar publicación:", err);
+                alert("Ocurrió un error al guardar los cambios.");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `Guardar Cambios`;
+            }
+        };
+
         window.openAdminPanelOrLogin = function() {
             if (isAdminLoggedIn) {
                 toggleModal('modalAdminDashboard');
@@ -1110,7 +1266,6 @@
             }
         };
 
-        // Renderizado de tabla de administración con filtros de Tipo y Ordenamiento por Fecha
         window.renderAdminTable = function() {
             const tbody = document.getElementById('adminTableBody');
             if (!tbody) return;
@@ -1130,21 +1285,22 @@
                 return true;
             });
 
-            // Ordenar por fecha (createdAt)
             filtered.sort((a, b) => {
                 const timeA = a.createdAt || 0;
                 const timeB = b.createdAt || 0;
                 if (sortOrder === 'oldest') {
-                    return timeA - timeB; // Más viejas primero
+                    return timeA - timeB;
                 } else {
-                    return timeB - timeA; // Más recientes primero
+                    return timeB - timeA;
                 }
             });
 
             if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400 italic">No hay publicaciones con estos filtros.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400 italic">No hay publicaciones con estos filtros.</td></tr>`;
                 return;
             }
+
+            const now = Date.now();
 
             filtered.forEach(p => {
                 const tr = document.createElement('tr');
@@ -1155,29 +1311,52 @@
                 else if (p.status === 'pending') statusBadge = '<span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">⏳ Pendiente</span>';
                 else if (p.status === 'inactive') statusBadge = '<span class="bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">⚪ Desactivado</span>';
 
-                const formattedDate = p.createdAt ? new Date(p.createdAt).toLocaleDateString() : 'Sin fecha';
+                let daysOld = 0;
+                let dateStr = 'Sin fecha';
+                if (p.createdAt) {
+                    const postDate = new Date(p.createdAt);
+                    dateStr = postDate.toLocaleDateString();
+                    const diffTime = Math.abs(now - p.createdAt);
+                    daysOld = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                }
+
+                let ageBadge = `<div class="text-[10px] text-slate-500">${dateStr} (${daysOld} días)</div>`;
+                if (daysOld >= 30 && p.status !== 'inactive') {
+                    ageBadge = `<div class="text-[10px] font-bold text-red-600 bg-red-50 border border-red-200 px-2 py-0.5 rounded mt-1 flex items-center gap-1 w-fit">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Demasiado tiempo (${daysOld}d)
+                    </div>` + ageBadge;
+                }
+
+                let typeLabel = '🟢 Donación';
+                if (p.type === 'request') typeLabel = '🔵 Solicitud';
+                else if (p.type === 'accessory') typeLabel = '🟣 Accesorio';
 
                 tr.innerHTML = `
-                    <td class="p-2.5">
-                        <div class="font-mono font-bold text-brand-700">${p.publicId || 'N/A'}</div>
-                        <div class="text-[10px] text-slate-400">${formattedDate}</div>
+                    <td class="p-2.5 align-top">
+                        ${ageBadge}
                     </td>
-                    <td class="p-2.5">
+                    <td class="p-2.5 align-top">
+                        <div class="font-mono font-bold text-brand-700">${p.publicId || 'N/A'}</div>
+                    </td>
+                    <td class="p-2.5 align-top">
                         <strong class="text-slate-900">${escapeHtml(p.name)}</strong>
                         <div class="text-[10px] text-slate-500">${escapeHtml(p.dosage)}</div>
                     </td>
-                    <td class="p-2.5 capitalize font-medium">${p.type === 'donation' ? '🟢 Donación' : '🔵 Solicitud'}</td>
-                    <td class="p-2.5">
+                    <td class="p-2.5 align-top font-medium">${typeLabel}</td>
+                    <td class="p-2.5 align-top">
                         <div>Tel: ${escapeHtml(p.phone)}</div>
                         <div class="text-[10px] text-slate-400">${escapeHtml(p.email || 'Sin correo')}</div>
                     </td>
-                    <td class="p-2.5">${statusBadge}</td>
-                    <td class="p-2.5 text-right space-x-1">
+                    <td class="p-2.5 align-top">${statusBadge}</td>
+                    <td class="p-2.5 align-top text-right space-x-1 whitespace-nowrap">
+                        <button onclick="openAdminEditModal('${p.id}')" class="bg-sky-100 hover:bg-sky-200 text-sky-800 px-2 py-1 rounded-lg text-[11px] font-bold" title="Editar ortografía o info">
+                            <i class="fa-solid fa-pen"></i> Editar
+                        </button>
                         ${p.status !== 'approved' ? `
                             <button onclick="changeStatus('${p.id}', 'approved')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-2 py-1 rounded-lg text-[11px] font-bold">Aprobar</button>
                         ` : ''}
                         ${p.status !== 'inactive' ? `
-                            <button onclick="changeStatus('${p.id}', 'inactive')" class="bg-amber-600 hover:bg-amber-700 text-white px-2 py-1 rounded-lg text-[11px] font-bold">Desactivar</button>
+                            <button onclick="changeStatus('${p.id}', 'inactive')" class="bg-amber-600 hover:bg-amber-700 text-white px-2 py-1 rounded-lg text-[11px] font-bold" title="Desactivar por tiempo excesivo">Desactivar</button>
                         ` : ''}
                         <button onclick="deletePostAdmin('${p.id}')" class="bg-red-100 hover:bg-red-200 text-red-700 px-2 py-1 rounded-lg text-[11px] font-bold">Eliminar</button>
                     </td>
@@ -1275,9 +1454,12 @@
             if (post.type === 'donation') {
                 badge.innerText = 'DONACIÓN GRATUITA';
                 badge.className = 'inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2 bg-emerald-100 text-emerald-800';
-            } else {
+            } else if (post.type === 'request') {
                 badge.innerText = 'SOLICITUD DE MEDICAMENTO';
                 badge.className = 'inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2 bg-sky-100 text-sky-800';
+            } else {
+                badge.innerText = 'EQUIPO / ACCESORIO MÉDICO';
+                badge.className = 'inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2 bg-purple-100 text-purple-800';
             }
 
             document.getElementById('contactModalMedName').innerText = post.name;
@@ -1295,7 +1477,7 @@
             document.getElementById('contactModalNotes').innerText = post.notes || 'Sin observaciones especificadas.';
 
             const cleanPhone = post.phone.replace(/\D/g, '');
-            const whatsappMsg = encodeURIComponent(`Hola, me pongo en contacto desde FarmaAyuda San Luis sobre el medicamento: ${post.name} (Folio: ${post.publicId || ''})`);
+            const whatsappMsg = encodeURIComponent(`Hola, me pongo en contacto desde FarmaAyuda San Luis sobre el artículo: ${post.name} (Folio: ${post.publicId || ''})`);
             
             document.getElementById('btnWhatsapp').href = `https://wa.me/52${cleanPhone}?text=${whatsappMsg}`;
             document.getElementById('btnPhone').href = `tel:${cleanPhone}`;
@@ -1330,6 +1512,7 @@
             document.getElementById('countAll').innerText = approved.length;
             document.getElementById('countDonations').innerText = approved.filter(p => p.type === 'donation').length;
             document.getElementById('countRequests').innerText = approved.filter(p => p.type === 'request').length;
+            document.getElementById('countAccessories').innerText = approved.filter(p => p.type === 'accessory').length;
             
             document.getElementById('badgePendingCount').innerText = pending.length;
             document.getElementById('badgeUnreadMsgsCount').innerText = unreadMsgs.length;
@@ -1338,10 +1521,14 @@
         window.setTab = function(tab) {
             currentTab = tab;
             document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.className = "tab-btn text-slate-600 hover:text-slate-900 font-semibold text-xs sm:text-sm px-4 py-2 rounded-xl transition hover:bg-slate-100";
+                btn.className = "tab-btn text-slate-600 hover:text-slate-900 font-semibold text-xs px-3 py-1.5 rounded-xl transition hover:bg-slate-100";
             });
-            const activeBtn = tab === 'all' ? 'tabAll' : (tab === 'donation' ? 'tabDonations' : 'tabRequests');
-            document.getElementById(activeBtn).className = "tab-btn font-bold text-xs sm:text-sm px-4 py-2 rounded-xl bg-slate-900 text-white shadow-sm transition";
+            let activeBtn = 'tabAll';
+            if (tab === 'donation') activeBtn = 'tabDonations';
+            else if (tab === 'request') activeBtn = 'tabRequests';
+            else if (tab === 'accessory') activeBtn = 'tabAccessories';
+
+            document.getElementById(activeBtn).className = "tab-btn font-bold text-xs px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-sm transition";
             renderPosts();
         };
 
